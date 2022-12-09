@@ -1,0 +1,13 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: 'nippo';
+  src: url('/fonts/Nippo-Variable.ttf') format('truetype'),
+    url('/fonts/Nippo-Variable.woff2') format('woff2'),
+    url('/fonts/Nippo-Variable.woff') format('woff');
+  font-weight: 200 700; /* 200 - Extralight, 300-Light, 400 - Regular, 500-Medium, 700 - Bold */
+  font-display: swap;
+  font-style: normal;
+}
