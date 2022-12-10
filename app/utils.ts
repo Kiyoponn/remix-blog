@@ -64,6 +64,12 @@ export function useOptionalAdminUser(): User | undefined {
   return user;
 }
 
+export function useAdminRoute(): Boolean {
+  const path = useMatches().find((route) => route.pathname === "/admin");
+  if (!path) return false;
+  return true;
+}
+
 export function useUser(): User {
   const maybeUser = useOptionalUser();
   if (!maybeUser) {

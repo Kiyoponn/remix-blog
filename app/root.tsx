@@ -1,5 +1,5 @@
-import type { LinksFunction, LoaderArgs, MetaFunction } from '@remix-run/node';
-import { json } from '@remix-run/node';
+import type { LinksFunction, LoaderArgs, MetaFunction } from '@remix-run/node'
+import { json } from '@remix-run/node'
 import {
   Links,
   LiveReload,
@@ -8,11 +8,11 @@ import {
   Scripts,
   ScrollRestoration,
   useLoaderData
-} from '@remix-run/react';
+} from '@remix-run/react'
 
-import { getEnv } from './env.server';
-import { getUser } from './session.server';
-import tailwindStylesheetUrl from './styles/tailwind.css';
+import { getEnv } from './env.server'
+import { getUser } from './session.server'
+import tailwindStylesheetUrl from './styles/tailwind.css'
 
 export const links: LinksFunction = () => {
   return [{ rel: 'stylesheet', href: tailwindStylesheetUrl }]
@@ -36,7 +36,7 @@ export default function App() {
   return (
     <html
       lang='en'
-      className='selection:bg-accent-2/90 h-full selection:text-primary'
+      className='h-full selection:bg-accent-2/90 selection:text-primary'
     >
       <head>
         <Meta />

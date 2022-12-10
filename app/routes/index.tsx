@@ -19,7 +19,7 @@ export default function Blogs() {
           <ul className='flex flex-col gap-11 pl-20'>
             {posts.map((post) => (
               <li key={post.slug}>
-                <Link to={post.slug}>
+                <Link prefetch='intent' to={post.slug}>
                   <h1 className='text-2xl text-accent-2 underline'>
                     {post.title}
                   </h1>

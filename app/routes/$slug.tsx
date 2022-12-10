@@ -1,4 +1,4 @@
-import { json, LoaderArgs } from '@remix-run/node'
+import { json, LoaderArgs, MetaFunction } from '@remix-run/node'
 import { useLoaderData } from '@remix-run/react'
 import { marked } from 'marked'
 import invariant from 'tiny-invariant'
@@ -17,6 +17,12 @@ export const loader = async ({ params }: LoaderArgs) => {
   const html = marked(post.markdown)
 
   return json({ post, html })
+}
+
+export const meta: MetaFunction = () => {
+  return {
+    title: 'Blog'
+  }
 }
 
 export default function Blog() {
