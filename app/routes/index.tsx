@@ -1,10 +1,10 @@
 import { Link, useLoaderData } from '@remix-run/react'
 import removeMd from 'remove-markdown'
 import Navbar from '~/components/Navbar'
-import { getPostListItems } from '~/models/post.server'
+import { getPosts } from '~/models/post.server'
 
 export const loader = async () => {
-  const posts = await getPostListItems()
+  const posts = await getPosts()
   return { posts }
 }
 

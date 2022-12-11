@@ -1,5 +1,4 @@
 import { json, LoaderArgs } from '@remix-run/node'
-import Navbar from '~/components/Navbar'
 import { requireAdminUser } from '~/session.server'
 
 export async function loader({ request }: LoaderArgs) {
@@ -9,11 +8,10 @@ export async function loader({ request }: LoaderArgs) {
 
 export default function Admin() {
   return (
-    <>
-      <Navbar title={'blog admin'} cta={true} />
-      <div>
-        <h1>Admin</h1>
-      </div>
-    </>
+    <div>
+      <h1 className='text-center text-xl text-accent-2 text-opacity-70'>
+        Select a blog on left to edit or create a new one.
+      </h1>
+    </div>
   )
 }
