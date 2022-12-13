@@ -23,7 +23,7 @@ async function seed() {
     },
   });
 
-  const posts = [
+  const blogs = [
     {
       slug: "my-first-post",
       title: "My First Post",
@@ -60,11 +60,11 @@ Isn't it great?
     },
   ];
 
-  for (const post of posts) {
-    await prisma.post.upsert({
-      where: { slug: post.slug },
-      update: post,
-      create: post,
+  for (const blog of blogs) {
+    await prisma.blog.upsert({
+      where: { slug: blog.slug },
+      update: blog,
+      create: blog,
     });
   }
 

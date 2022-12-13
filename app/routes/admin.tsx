@@ -1,14 +1,20 @@
-import { Link, Outlet, useLoaderData } from '@remix-run/react'
-import Navbar from '~/components/Navbar'
-import { getPostListItems } from '~/models/post.server'
+import { LoaderArgs } from '@remix-run/node';
+import { Link, NavLink, Outlet, useLoaderData } from '@remix-run/react';
+import { FiPlus } from 'react-icons/fi';
+import Navbar from '~/components/Navbar';
+import { getBlogListItems } from '~/models/blog.server';
 
-export const loader = async () => {
-  const posts = await getPostListItems()
-  return { posts }
+export const loader = async ({ params }: LoaderArgs) => {
+  const slug = params.slug as string
+
+  const blogs = await getBlogListItems()
+  return { blogs, slug }
 }
 
 export default function LoginPage() {
-  const { posts } = useLoaderData<typeof loader>()
+  const { blogs, slug } = useLoaderData<typeof loader>()
+  console.log(slug)
+
 
   return (
     <>
@@ -20,13 +26,21 @@ export default function LoginPage() {
               <h1 className='mb-5 text-5xl font-medium text-accent-2'>Blogs</h1>
               <div>
                 <ul className='flex flex-col gap-2'>
-                  {posts.map((post) => (
-                    <li key={post.slug}>
-                      <Link prefetch='intent' to={post.slug}>
-                        <h1 className='text-xl text-accent-1 text-opacity-70  underline'>
-                          {post.title}
-                        </h1>
-                      </Link>
+                  {blogs.map((blog) => (
+                    <li key={blog.slug}>
+                      <NavLink
+                        className={({ isActive }) =>
+                          'text-xl text-accent-1 hover:underline' +
+                          ' ' +
+                          (isActive
+                            ? 'text-opacity-100 underline'
+                            : 'text-opacity-70')
+                        }
+                        prefetch='intent'
+                        to={blog.slug}
+                      >
+                        {blog.title}
+                      </NavLink>
                     </li>
                   ))}
                 </ul>
