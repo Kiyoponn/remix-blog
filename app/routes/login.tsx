@@ -116,7 +116,7 @@ export default function LoginPage() {
                 aria-invalid={emailError ? true : undefined}
                 aria-describedby='email-error'
                 placeholder='you@example.com'
-                className='h-11 w-full border-[1.5px] border-accent-1/30 bg-primary p-2 placeholder-accent-2/40 placeholder:italic focus:border-accent-1 focus:ring focus:ring-accent-1 focus:ring-opacity-20 focus:ring-offset-0'
+                className='h-11 w-full border-[1.5px] border-accent-1/30 bg-primary p-2 font-light placeholder-accent-2/40 placeholder:font-light placeholder:italic focus:border-accent-1 focus:ring focus:ring-accent-1 focus:ring-opacity-20 focus:ring-offset-0'
               />
               {emailError && (
                 <div
@@ -144,7 +144,7 @@ export default function LoginPage() {
                 aria-invalid={passwordError ? true : undefined}
                 aria-describedby='password-error'
                 required
-                className=' h-11 w-full border-[1.5px] border-accent-1/30 bg-primary p-2 focus:border-accent-1 focus:ring focus:ring-accent-1 focus:ring-opacity-20 focus:ring-offset-0'
+                className=' h-11 w-full border-[1.5px] border-accent-1/30 bg-primary p-2 font-light focus:border-accent-1 focus:ring focus:ring-accent-1 focus:ring-opacity-20 focus:ring-offset-0'
               />
               {passwordError && (
                 <div className='pt-1 text-accent-2' id='password-error'>
@@ -158,7 +158,7 @@ export default function LoginPage() {
                 id='remember'
                 name='remember'
                 type='checkbox'
-                className='h-4 w-4 border-[1.5px] border-accent-1/30 bg-primary text-accent-1 focus:border-accent-1 focus:ring focus:ring-accent-1 focus:ring-opacity-20 focus:ring-offset-0'
+                className='h-4 w-4 border-[1.5px] border-accent-1/30 bg-primary font-light text-accent-1 focus:border-accent-1 focus:ring focus:ring-accent-1 focus:ring-opacity-20 focus:ring-offset-0'
               />
               <label
                 htmlFor='remember'

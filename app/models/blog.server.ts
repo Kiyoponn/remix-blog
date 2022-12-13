@@ -31,6 +31,7 @@ export async function deleteBlog(slug: string) {
 
 export async function updateBlog(
   blog: Pick<Blog, "slug" | "title" | "markdown">,
+  oldSlug: string,
 ) {
-  return prisma.blog.update({ data: blog, where: { slug: blog.slug } });
+  return prisma.blog.update({ data: blog, where: { slug: oldSlug } });
 }

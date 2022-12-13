@@ -27,7 +27,7 @@ model Password {
   userId String @unique
 }
 
-model Post {
+model Blog {
   slug     String @id
   title    String
   markdown String
