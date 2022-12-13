@@ -3,20 +3,20 @@ import { useLoaderData } from '@remix-run/react'
 import { marked } from 'marked'
 import invariant from 'tiny-invariant'
 import Navbar from '~/components/Navbar'
-import { getPost } from '~/models/post.server'
+import { getBlog } from '~/models/blog.server'
 
 export const loader = async ({ params }: LoaderArgs) => {
   invariant(params.slug, `params.slug is required`)
 
-  const post = await getPost(params.slug)
+  const blog = await getBlog(params.slug)
 
-  if (!post) {
+  if (!blog) {
     throw new Response('not found', { status: 404 })
   }
 
-  const html = marked(post.markdown)
+  const html = marked(blog.markdown)
 
-  return json({ post, html })
+  return json({ blog, html })
 }
 
 export const meta: MetaFunction = () => {
@@ -26,7 +26,7 @@ export const meta: MetaFunction = () => {
 }
 
 export default function Blog() {
-  const { post, html } = useLoaderData<typeof loader>()
+  const { blog, html } = useLoaderData<typeof loader>()
 
   return (
     <>
@@ -35,7 +35,7 @@ export default function Blog() {
         <div className='max-w-2xl border-l-2 border-accent-1/50'>
           <div className='pl-20'>
             <h1 className='mb-6 text-5xl font-medium normal-case text-accent-2'>
-              {post.title}
+              {blog.title}
             </h1>
             <article className='text-xl normal-case text-tertiary/80'>
               <div dangerouslySetInnerHTML={{ __html: html }} />
