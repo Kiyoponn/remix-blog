@@ -1,13 +1,13 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght@8..144,100;8..144,200;8..144,300;8..144,400;8..144,500;8..144,600;8..144,700;8..144,800;8..144,900;8..144,1000&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-@font-face {
-  font-family: 'nippo';
-  src: url('/fonts/Nippo-Variable.ttf') format('truetype'),
-    url('/fonts/Nippo-Variable.woff2') format('woff2'),
-    url('/fonts/Nippo-Variable.woff') format('woff');
-  font-weight: 200 700; /* 200 - Extralight, 300-Light, 400 - Regular, 500-Medium, 700 - Bold */
-  font-display: swap;
-  font-style: normal;
+@layer utilities {
+  .title {
+    font-variation-settings: 'GRAD' 80, 'slnt' 0, 'XTRA' 468, 'XOPQ' 110,
+      'YOPQ' 40, 'YTLC' 540, 'YTUC' 712, 'YTAS' 750, 'YTDE' -240, 'YTFI' 738;
+    font-stretch: 120;
+  }
 }

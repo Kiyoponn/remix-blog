@@ -7,7 +7,7 @@ import {
   Outlet,
   Scripts,
   ScrollRestoration,
-  useLoaderData
+  useLoaderData,
 } from '@remix-run/react'
 
 import { getEnv } from './env.server'
@@ -21,34 +21,31 @@ export const links: LinksFunction = () => {
 export const meta: MetaFunction = () => ({
   charset: 'utf-8',
   title: "Raju's Blog",
-  viewport: 'width=device-width,initial-scale=1'
+  viewport: 'width=device-width,initial-scale=1',
 })
 
 export async function loader({ request }: LoaderArgs) {
   return json({
     user: await getUser(request),
-    ENV: getEnv()
+    ENV: getEnv(),
   })
 }
 
 export default function App() {
   const data = useLoaderData<typeof loader>()
   return (
-    <html
-      lang='en'
-      className='h-full selection:bg-accent-2/90 selection:text-primary'
-    >
+    <html lang='en' className='h-full bg-neutral-10 font-rfelx text-white'>
       <head>
         <Meta />
         <Links />
       </head>
-      <body className='mx-auto h-full max-w-5xl bg-secondary font-nippo font-normal lowercase'>
+      <body className='bg-surface'>
         <Outlet />
         <ScrollRestoration />
         <Scripts />
         <script
           dangerouslySetInnerHTML={{
-            __html: `window.ENV = ${JSON.stringify(data.ENV)};`
+            __html: `window.ENV = ${JSON.stringify(data.ENV)};`,
           }}
         />
         <LiveReload />

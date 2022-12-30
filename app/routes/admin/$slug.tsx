@@ -5,7 +5,7 @@ import {
   useCatch,
   useLoaderData,
   useParams,
-  useTransition
+  useTransition,
 } from '@remix-run/react'
 import { LoaderArgs } from '@remix-run/server-runtime'
 import invariant from 'tiny-invariant'
@@ -15,7 +15,7 @@ import {
   createBlog,
   deleteBlog,
   getBlog,
-  updateBlog
+  updateBlog,
 } from '~/models/blog.server'
 import { requireAdminUser } from '~/session.server'
 
@@ -54,7 +54,7 @@ export async function action({ request, params }: LoaderArgs) {
   const errors = {
     title: title ? null : 'title is required',
     slug: slug ? null : 'slug is required',
-    markdown: markdown ? null : 'markdown is required'
+    markdown: markdown ? null : 'markdown is required',
   }
   const hasErrors = Object.values(errors).some((errorMessage) => errorMessage)
   if (hasErrors) {
@@ -89,16 +89,16 @@ export default function PostAdmin() {
   const isNewBlog = !data.blog
 
   return (
-    <div className='w-full bg-primary'>
+    <div className='bg-primary w-full'>
       <Form
-        className='my-11 mx-auto flex w-[480px] flex-col gap-7 normal-case text-accent-1'
+        className='text-accent-1 my-11 mx-auto flex w-[480px] flex-col gap-7 normal-case'
         method='post'
       >
         <div>
           <label>
             Post Title:{' '}
             {errors?.title ? (
-              <em className='font-light text-accent-2'>{errors.title}</em>
+              <em className='text-accent-2 font-light'>{errors.title}</em>
             ) : null}
             <input
               type='text'
@@ -106,7 +106,7 @@ export default function PostAdmin() {
               key={data?.blog?.slug ?? 'new'}
               defaultValue={data?.blog?.title}
               placeholder='blog title'
-              className={`${inputClassName} font-light text-tertiary`}
+              className={`${inputClassName} text-tertiary font-light`}
             />
           </label>
         </div>
@@ -114,7 +114,7 @@ export default function PostAdmin() {
           <label>
             Post Slug:{' '}
             {errors?.slug ? (
-              <em className='font-light text-accent-2'>{errors.slug}</em>
+              <em className='text-accent-2 font-light'>{errors.slug}</em>
             ) : null}
             <input
               type='text'
@@ -123,7 +123,7 @@ export default function PostAdmin() {
               defaultValue={data?.blog?.slug}
               placeholder='blog slug'
               // disabled={Boolean(data.blog)}
-              className={`${inputClassName} font-light text-tertiary`}
+              className={`${inputClassName} text-tertiary font-light`}
             />
           </label>
         </div>
@@ -131,7 +131,7 @@ export default function PostAdmin() {
           <label htmlFor='markdown'>
             Markdown:{' '}
             {errors?.markdown ? (
-              <em className='font-light text-accent-2'>{errors.markdown}</em>
+              <em className='text-accent-2 font-light'>{errors.markdown}</em>
             ) : null}
           </label>
           <textarea
@@ -141,7 +141,7 @@ export default function PostAdmin() {
             key={data?.blog?.markdown ?? 'new'}
             defaultValue={data?.blog?.markdown}
             placeholder='blog body (with markdowns)'
-            className={`${inputClassName} } font-light text-tertiary`}
+            className={`${inputClassName} } text-tertiary font-light`}
           ></textarea>
           <div className='mt-10 flex justify-end gap-4'>
             {isNewBlog ? null : (

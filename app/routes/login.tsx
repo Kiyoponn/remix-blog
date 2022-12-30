@@ -56,13 +56,13 @@ export async function action({ request }: ActionArgs) {
     request,
     userId,
     remember: remember === 'on' ? true : false,
-    redirectTo
+    redirectTo,
   })
 }
 
 export const meta: MetaFunction = () => {
   return {
-    title: 'Login'
+    title: 'Login',
   }
 }
 
@@ -92,16 +92,16 @@ export default function LoginPage() {
 
   return (
     <>
-      <Navbar title={'login'} cta={false} />
+      <Navbar title={'login'} />
       <main>
-        <div className='mx-auto mt-40 max-h-[360px] w-[720px] border border-accent-1 bg-primary blur-none drop-shadow-[32px_32px_0_rgba(43,35,185)]'>
+        <div className='border-accent-1 bg-primary mx-auto mt-40 max-h-[360px] w-[720px] border blur-none drop-shadow-[32px_32px_0_rgba(43,35,185)]'>
           <Form
             method='post'
             className='mx-auto flex max-w-2xl flex-col gap-5 p-14'
           >
             <div>
               <label
-                className='text-xl font-medium normal-case text-accent-1'
+                className='text-xl text-accent-1 font-medium normal-case'
                 htmlFor='email'
               >
                 Email:
@@ -116,11 +116,11 @@ export default function LoginPage() {
                 aria-invalid={emailError ? true : undefined}
                 aria-describedby='email-error'
                 placeholder='you@example.com'
-                className='h-11 w-full border-[1.5px] border-accent-1/30 bg-primary p-2 font-light placeholder-accent-2/40 placeholder:font-light placeholder:italic focus:border-accent-1 focus:ring focus:ring-accent-1 focus:ring-opacity-20 focus:ring-offset-0'
+                className='border-accent-1/30 bg-primary placeholder-accent-2/40 focus:border-accent-1 focus:ring-accent-1 h-11 w-full border-[1.5px] p-2 font-light placeholder:font-light placeholder:italic focus:ring focus:ring-opacity-20 focus:ring-offset-0'
               />
               {emailError && (
                 <div
-                  className='pt-1 normal-case text-accent-2'
+                  className='text-accent-2 pt-1 normal-case'
                   id='email-error'
                 >
                   {emailError}
@@ -130,7 +130,7 @@ export default function LoginPage() {
 
             <div>
               <label
-                className='text-xl font-medium normal-case text-accent-1'
+                className='text-xl text-accent-1 font-medium normal-case'
                 htmlFor='password'
               >
                 Password:
@@ -144,10 +144,10 @@ export default function LoginPage() {
                 aria-invalid={passwordError ? true : undefined}
                 aria-describedby='password-error'
                 required
-                className=' h-11 w-full border-[1.5px] border-accent-1/30 bg-primary p-2 font-light focus:border-accent-1 focus:ring focus:ring-accent-1 focus:ring-opacity-20 focus:ring-offset-0'
+                className=' border-accent-1/30 bg-primary focus:border-accent-1 focus:ring-accent-1 h-11 w-full border-[1.5px] p-2 font-light focus:ring focus:ring-opacity-20 focus:ring-offset-0'
               />
               {passwordError && (
-                <div className='pt-1 text-accent-2' id='password-error'>
+                <div className='text-accent-2 pt-1' id='password-error'>
                   {passwordError}
                 </div>
               )}
@@ -158,11 +158,11 @@ export default function LoginPage() {
                 id='remember'
                 name='remember'
                 type='checkbox'
-                className='h-4 w-4 border-[1.5px] border-accent-1/30 bg-primary font-light text-accent-1 focus:border-accent-1 focus:ring focus:ring-accent-1 focus:ring-opacity-20 focus:ring-offset-0'
+                className='border-accent-1/30 bg-primary text-accent-1 focus:border-accent-1 focus:ring-accent-1 h-4 w-4 border-[1.5px] font-light focus:ring focus:ring-opacity-20 focus:ring-offset-0'
               />
               <label
                 htmlFor='remember'
-                className='ml-2 block text-sm text-accent-1'
+                className='text-sm text-accent-1 ml-2 block'
               >
                 Remember me
               </label>
@@ -173,7 +173,7 @@ export default function LoginPage() {
               name='submit'
               type='submit'
               value='login'
-              className='mx-auto h-12 w-32 bg-accent-1 text-xl text-primary hover:bg-accent-1/90 focus:outline-none focus:ring focus:ring-accent-1 focus:ring-opacity-20 focus:ring-offset-0'
+              className='bg-accent-1 text-xl text-primary hover:bg-accent-1/90 focus:ring-accent-1 mx-auto h-12 w-32 focus:outline-none focus:ring focus:ring-opacity-20 focus:ring-offset-0'
             >
               log in
             </button>

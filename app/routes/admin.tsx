@@ -16,13 +16,13 @@ export default function LoginPage() {
 
   return (
     <>
-      <Navbar title={'blog admin'} cta={true} />
-      <section className='mt-16'>
-        <div className='mx-auto max-w-5xl border-t border-l border-accent-1/50'>
+      <Navbar title={'admin'} />
+      <main className='mt-16'>
+        <div className='border-accent-1/50 mx-auto max-w-5xl border-t border-l'>
           <div className='ml-9 mt-9 flex gap-[6rem]'>
             <nav>
               <Link to={'/admin'}>
-                <h1 className='mb-5 text-5xl font-medium text-accent-2'>
+                <h1 className='text-5xl text-accent-2 mb-5 font-medium'>
                   Blogs
                 </h1>
               </Link>
@@ -48,7 +48,7 @@ export default function LoginPage() {
                   <li>
                     <NavLink
                       className={({ isActive }) =>
-                        'flex items-center gap-1 text-xl text-accent-1 text-opacity-70 hover:underline' +
+                        'text-xl text-accent-1 flex items-center gap-1 text-opacity-70 hover:underline' +
                         ' ' +
                         (isActive
                           ? 'text-opacity-100 underline'
@@ -71,7 +71,7 @@ export default function LoginPage() {
             </main>
           </div>
         </div>
-      </section>
+      </main>
     </>
   )
 }

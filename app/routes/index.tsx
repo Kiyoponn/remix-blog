@@ -13,7 +13,7 @@ export default function Blogs() {
 
   return (
     <>
-      <Navbar title='Blogs' cta={true} />
+      <Navbar title='blogs' />
       <main className='mx-32 mt-28'>
         <div className='max-w-2xl border-l-2 border-accent-1/50'>
           <ul className='flex flex-col gap-11 pl-20'>
