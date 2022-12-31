@@ -103,6 +103,19 @@ module.exports = {
         99: '#F6FFF1',
       },
     },
+    backgroundImage: {
+      'surface-1':
+        'linear-gradient(0deg, rgba(60, 227, 101, 0.05), rgba(60, 227, 101, 0.05))',
+    },
+    boxShadow: {
+      'elvation-1': '',
+      'elvation-2':
+        '0px 2px 6px 2px rgba(0, 0, 0, 0.15), 0px 1px 2px rgba(0, 0, 0, 0.3)',
+      'elvation-3':
+        '0px 4px 8px 3px rgba(0, 0, 0, 0.15), 0px 1px 3px rgba(0, 0, 0, 0.3)',
+      'elvation-4': '',
+      'elvation-5': '',
+    },
   },
   plugins: [require('@tailwindcss/forms')],
 }

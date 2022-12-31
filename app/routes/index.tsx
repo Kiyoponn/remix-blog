@@ -14,21 +14,37 @@ export default function Blogs() {
   return (
     <>
       <Navbar title='blogs' />
-      <main className='mx-32 mt-28'>
-        <div className='max-w-2xl border-l-2 border-accent-1/50'>
-          <ul className='flex flex-col gap-11 pl-20'>
-            {blogs.map((blog) => (
-              <li key={blog.slug}>
-                <Link prefetch='intent' to={blog.slug}>
-                  <h1 className='text-2xl text-accent-2 underline'>
-                    {blog.title}
-                  </h1>
-                  <p className='normal-case text-tertiary/80'>
-                    {removeMd(blog.markdown).slice(0, 100) + '...'}
+      <main className='mx-auto max-w-6xl'>
+        <div className='mx-auto mt-24 max-w-3xl rounded-lg bg-surface-1 px-12 pt-16 pb-14 shadow-elvation-2'>
+          <ul>
+            {blogs.map((blog) => {
+              const date = new Date(blog.updatedAt)
+                .toLocaleDateString('en-IN', {
+                  year: 'numeric',
+                  month: 'numeric',
+                  day: 'numeric',
+                })
+                .replace(/\//g, '.')
+
+              return (
+                <li key={blog.slug}>
+                  <p className='mb-1 text-label-md font-light text-neutral-80'>
+                    {date}
                   </p>
-                </Link>
-              </li>
-            ))}
+                  <Link className='group' prefetch='intent' to={blog.slug}>
+                    <h1 className='mb-2 w-[360px] text-headline-md underline-offset-8 transition-colors duration-150 ease-in group-hover:text-primary-80 group-hover:underline'>
+                      {blog.title}
+                    </h1>
+                    <p className='text-tertiary/80 w-[360px] text-body-md normal-case text-neutral-90'>
+                      {removeMd(blog.markdown).slice(0, 100) + '...'}
+                    </p>
+                  </Link>
+                  {blogs.length - 1 === blogs.indexOf(blog) ? null : (
+                    <hr className='my-8 border-neutral-variant-30' />
+                  )}
+                </li>
+              )
+            })}
           </ul>
         </div>
       </main>

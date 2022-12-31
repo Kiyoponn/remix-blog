@@ -15,7 +15,7 @@ export default function Navbar({ title }: { title: string }) {
           <Link to='/'>
             <img src='/logo.svg' alt='logo' width={48} height={48} />
           </Link>
-          <h1 className='title text-display-md font-extrabold capitalize text-neutral-90'>
+          <h1 className='title text-display-md capitalize text-neutral-90'>
             {title}
           </h1>
         </div>

@@ -31,16 +31,12 @@ export default function Blog() {
   return (
     <>
       <Navbar title={'blog'} />
-      <main className='mx-32 mt-28'>
-        <div className='border-accent-1/50 max-w-2xl border-l-2'>
-          <div className='pl-20'>
-            <h1 className='text-5xl text-accent-2 mb-6 font-medium normal-case'>
-              {blog.title}
-            </h1>
-            <article className='text-xl text-tertiary/80 normal-case'>
-              <div dangerouslySetInnerHTML={{ __html: html }} />
-            </article>
-          </div>
+      <main className='mx-auto max-w-6xl'>
+        <div className='mx-auto mt-24 w-2/4 px-16 py-8'>
+          <h1 className='mb-4 text-title-lg font-semibold'>{blog.title}</h1>
+          <article className='text-body-lg text-neutral-90'>
+            <div dangerouslySetInnerHTML={{ __html: html }} />
+          </article>
         </div>
       </main>
     </>

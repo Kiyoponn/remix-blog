@@ -39,7 +39,7 @@ export default function App() {
         <Meta />
         <Links />
       </head>
-      <body className='bg-surface'>
+      <body>
         <Outlet />
         <ScrollRestoration />
         <Scripts />
