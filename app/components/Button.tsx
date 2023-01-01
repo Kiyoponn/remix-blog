@@ -1,5 +1,5 @@
-import { Link } from '@remix-run/react';
-import { cva, type VariantProps } from 'class-variance-authority';
+import { Link } from '@remix-run/react'
+import { cva, type VariantProps } from 'class-variance-authority'
 
 interface ButtonProps extends VariantProps<typeof buttonClasses> {
   children: React.ReactNode
@@ -7,25 +7,29 @@ interface ButtonProps extends VariantProps<typeof buttonClasses> {
 }
 
 const buttonClasses = cva(
-  'px-6 py-[0.625rem] rounded-full text-label-lg outline-none uppercase font-medium transition-all duration-300 ease-in-out',
+  [
+    'px-6 h-10 rounded text-center flex items-center outline-none text-label-lg font-medium uppercase',
+    'disabled:text-opacity-content disabled:bg-opacity-container disabled:bg-on-surface disabled:text-on-surface disabled:shadow-none',
+  ],
   {
     variants: {
       variant: {
-        filled: [
-          'text-primary-20 bg-primary-80',
-          'hover:bg-primary-80/90',
-          'focus:bg-primary-90/90 focus:ring focus:ring-2 focus:ring-primary-80 focus:ring-opacity-25',
-        ],
-        outline: [
-          'text-primary-80 border border-neutral-variant-60',
-          'hover:bg-primary-20/90',
-          'focus:bg-primary-30/90 focus:ring focus:ring-2 focus:ring-primary-20 focus:ring-opacity-80',
-        ],
-        text: ['text-primary-80 bg-neutral-10 ', 'hover:bg-primary-20'],
+        text: [],
+        outline: [],
         tonal: [
-          'text-secondary-70 bg-secondary-30',
-          'hover:bg-secondary-30/90',
-          'focus:bg-secondary-40/90 focus:ring focus:ring-2 focus:ring-secondary-30 focus:ring-opacity-25',
+          'bg-secondary-container text-on-secondary-container',
+          'hover:bg-on-secondary-container hover:bg-opacity-hovered hover:shadow-elvation-1 hover:text-on-secondary-container',
+        ],
+        filled: [
+          'bg-primary text-on-primary',
+          'hover:bg-primary hover:shadow-elvation-1',
+          'focus:bg-on-primary focus:bg-opacity-focused focus:shadow-elvation-0',
+        ],
+        elevated: [
+          'bg-surface shadow-elvation-1 text-primary',
+          'hover:shadow-elvation-2 hover:bg-primary hover:bg-opacity-hovered',
+          'focus:bg-primary focus:bg-opacity-focused',
+          'active:bg-opacity-pressed active:bg-primary',
         ],
       },
     },
@@ -45,9 +49,10 @@ export const classTest = () => {
 
 export const Button = ({ children, href, variant }: ButtonProps) => {
   return (
-    <Link className={buttonClasses({ variant })} to={href}>
+    <Link to={href} className={buttonClasses({ variant })}>
       {children}
     </Link>
+    // <button disabled className={buttonClasses({ variant })}>{ children }</button>
   )
 }
 

@@ -34,7 +34,7 @@ export async function loader({ request }: LoaderArgs) {
 export default function App() {
   const data = useLoaderData<typeof loader>()
   return (
-    <html lang='en' className='h-full bg-neutral-10 font-rfelx text-white'>
+    <html lang='en' className='h-full bg-surface font-rfelx text-white'>
       <head>
         <Meta />
         <Links />

@@ -34,9 +34,12 @@ export default function Blog() {
       <main className='mx-auto max-w-6xl'>
         <div className='mx-auto mt-24 w-2/4 px-16 py-8'>
           <h1 className='mb-4 text-title-lg font-semibold'>{blog.title}</h1>
-          <article className='text-body-lg text-neutral-90'>
-            <div dangerouslySetInnerHTML={{ __html: html }} />
-          </article>
+          <div className='text-neutral-90 text-body-lg'>
+            <article
+              className='prose prose-invert'
+              dangerouslySetInnerHTML={{ __html: html }}
+            />
+          </div>
         </div>
       </main>
     </>
