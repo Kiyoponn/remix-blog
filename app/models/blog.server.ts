@@ -7,6 +7,7 @@ export async function getBlogListItems() {
     select: {
       slug: true,
       title: true,
+      subtitle: true,
     }
   });
 }

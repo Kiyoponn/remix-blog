@@ -30,6 +30,7 @@ model Password {
 model Blog {
   slug     String @id
   title    String
+  subtitle String
   markdown String
 
   createdAt DateTime @default(now())

@@ -1,45 +1,35 @@
-import { Form, Link, useLocation } from '@remix-run/react'
+import { NavLink } from '@remix-run/react'
+import clsx from 'clsx'
 
-import { useOptionalAdminUser, useOptionalUser } from '~/utils'
-import { Button, LogOutButton } from './Button'
+import { useOptionalAdminUser } from '~/utils'
 
-export default function Navbar({ title }: { title: string }) {
-  const currentPath = useLocation().pathname
-  const user = useOptionalUser()
+export default function Navbar() {
   const adminUser = useOptionalAdminUser()
 
   return (
-    <nav className='mx-auto mt-4 max-w-6xl'>
-      <div className='flex items-center justify-between'>
-        <div className='flex flex-grow items-center justify-between'>
-          <Link to='/'>
-            <img src='/logo.svg' alt='logo' width={48} height={48} />
-          </Link>
-          <h1 className='title text-display-md capitalize text-neutral-90'>
-            {title}
-          </h1>
-        </div>
-        <div className='flex flex-grow items-center justify-end gap-5'>
-          {user ? (
-            <>
-              {adminUser && currentPath !== '/admin' ? (
-                <Button variant='outline' href='/admin'>
-                  Admin
-                </Button>
-              ) : null}
-              <Form method='post' action='/logout'>
-                <LogOutButton variant='tonal'>Log out</LogOutButton>
-              </Form>
-            </>
-          ) : (
-            <>
-              {currentPath !== '/login' ? (
-                <Button href='/login'>Log in</Button>
-              ) : null}
-            </>
-          )}
-        </div>
-      </div>
+    <nav className='mx-auto mt-16 max-w-3xl'>
+      <ul className='flex gap-4 transition-all delay-500 ease-out'>
+        <NavLink
+          className={({ isActive }) => clsx({ 'font-bold': isActive })}
+          to='/'
+        >
+          <li className='rounded-lg p-2 hover:bg-accent'>Blogs</li>
+        </NavLink>
+        <NavLink
+          className={({ isActive }) => clsx({ 'font-bold': isActive })}
+          to='/about'
+        >
+          <li className='rounded-lg px-3 py-2 hover:bg-accent'>About</li>
+        </NavLink>
+        {adminUser ? (
+          <NavLink
+            className={({ isActive }) => clsx({ 'font-bold': isActive })}
+            to='/'
+          >
+            <li className='rounded-lg px-3 py-2 hover:bg-accent'>Admin</li>
+          </NavLink>
+        ) : null}
+      </ul>
     </nav>
   )
 }

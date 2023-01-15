@@ -1,17 +1,17 @@
-import { PrismaClient } from "@prisma/client";
-import bcrypt from "bcryptjs";
+import { PrismaClient } from '@prisma/client'
+import bcrypt from 'bcryptjs'
 
-const prisma = new PrismaClient();
+const prisma = new PrismaClient()
 
 async function seed() {
-  const email = "raju@remix.run";
+  const email = 'raju@remix.run'
 
   // cleanup the existing database
   await prisma.user.delete({ where: { email } }).catch(() => {
     // no worries if it doesn't exist yet
-  });
+  })
 
-  const hashedPassword = await bcrypt.hash("rajuiscool", 10);
+  const hashedPassword = await bcrypt.hash('rajuiscool', 10)
   await prisma.user.create({
     data: {
       email,
@@ -21,12 +21,13 @@ async function seed() {
         },
       },
     },
-  });
+  })
 
   const blogs = [
     {
-      slug: "my-first-post",
-      title: "My First Post",
+      slug: 'my-first-post',
+      title: 'My First Post',
+      subtitle: 'This is my first post.',
       markdown: `
 # This is my first post
 
@@ -34,8 +35,9 @@ Isn't it great?
       `.trim(),
     },
     {
-      slug: "90s-mixtape",
-      title: "A Mixtape I Made Just For You",
+      slug: '90s-mixtape',
+      title: 'A Mixtape I Made Just For You',
+      subtitle: 'A mixtape of my favorite songs from the 90s. Enjoy!',
       markdown: `
 # 90s Mixtape
 
@@ -58,24 +60,24 @@ Isn't it great?
 - C'mon N' Ride it (Quad City DJ's)
       `.trim(),
     },
-  ];
+  ]
 
   for (const blog of blogs) {
     await prisma.blog.upsert({
       where: { slug: blog.slug },
       update: blog,
       create: blog,
-    });
+    })
   }
 
-  console.log(`Database has been seeded. 🌱`);
+  console.log(`Database has been seeded. 🌱`)
 }
 
 seed()
   .catch((e) => {
-    console.error(e);
-    process.exit(1);
+    console.error(e)
+    process.exit(1)
   })
   .finally(async () => {
-    await prisma.$disconnect();
-  });
+    await prisma.$disconnect()
+  })

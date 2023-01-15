@@ -2,7 +2,7 @@ import { json, LoaderArgs, MetaFunction } from '@remix-run/node'
 import { useLoaderData } from '@remix-run/react'
 import { marked } from 'marked'
 import invariant from 'tiny-invariant'
-import Navbar from '~/components/Navbar'
+import Page from '~/components/Page'
 import { getBlog } from '~/models/blog.server'
 
 export const loader = async ({ params }: LoaderArgs) => {
@@ -29,19 +29,14 @@ export default function Blog() {
   const { blog, html } = useLoaderData<typeof loader>()
 
   return (
-    <>
-      <Navbar title={'blog'} />
-      <main className='mx-auto max-w-6xl'>
-        <div className='mx-auto mt-24 w-2/4 px-16 py-8'>
-          <h1 className='mb-4 text-title-lg font-semibold'>{blog.title}</h1>
-          <div className='text-neutral-90 text-body-lg'>
-            <article
-              className='prose prose-invert'
-              dangerouslySetInnerHTML={{ __html: html }}
-            />
-          </div>
+    <Page>
+        <h1 className='text-3xl font-bold mb-4'>{blog.title}</h1>
+        <div className='text-neutral-90 text-body-lg'>
+          <article
+            className='prose prose-invert'
+            dangerouslySetInnerHTML={{ __html: html }}
+          />
         </div>
-      </main>
-    </>
+    </Page>
   )
 }

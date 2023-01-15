@@ -1,6 +1,4 @@
 import { Link, NavLink, Outlet, useLoaderData } from '@remix-run/react'
-import { FiPlus } from 'react-icons/fi'
-import Navbar from '~/components/Navbar'
 import { getBlogListItems } from '~/models/blog.server'
 
 export const loader = async () => {
@@ -8,21 +6,17 @@ export const loader = async () => {
   return { blogs }
 }
 
-const linkClassName = ({ isActive }: { isActive: boolean }) =>
-  isActive ? 'text-opacity-100 underline' : ''
-
-export default function LoginPage() {
+export default function AdminPage() {
   const { blogs } = useLoaderData<typeof loader>()
 
   return (
     <>
-      <Navbar title={'admin'} />
       <main className='mt-16'>
-        <div className='border-accent-1/50 mx-auto max-w-5xl border-t border-l'>
+        <div className='mx-auto max-w-5xl border-t border-l border-accent-1/50'>
           <div className='ml-9 mt-9 flex gap-[6rem]'>
             <nav>
               <Link to={'/admin'}>
-                <h1 className='text-5xl text-accent-2 mb-5 font-medium'>
+                <h1 className='text-5xl mb-5 font-medium text-accent-2'>
                   Blogs
                 </h1>
               </Link>
@@ -48,7 +42,7 @@ export default function LoginPage() {
                   <li>
                     <NavLink
                       className={({ isActive }) =>
-                        'text-xl text-accent-1 flex items-center gap-1 text-opacity-70 hover:underline' +
+                        'flex items-center gap-1 text-xl text-accent-1 text-opacity-70 hover:underline' +
                         ' ' +
                         (isActive
                           ? 'text-opacity-100 underline'
@@ -58,9 +52,6 @@ export default function LoginPage() {
                       to='new'
                     >
                       <span>create new</span>
-                      <span>
-                        <FiPlus className='stroke-[3px]' />
-                      </span>
                     </NavLink>
                   </li>
                 </ul>

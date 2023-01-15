@@ -7,8 +7,9 @@ import {
   Outlet,
   Scripts,
   ScrollRestoration,
-  useLoaderData,
+  useLoaderData
 } from '@remix-run/react'
+import Navbar from './components/Navbar'
 
 import { getEnv } from './env.server'
 import { getUser } from './session.server'
@@ -33,13 +34,15 @@ export async function loader({ request }: LoaderArgs) {
 
 export default function App() {
   const data = useLoaderData<typeof loader>()
+
   return (
-    <html lang='en' className='h-full bg-surface font-rfelx text-white'>
+    <html lang='en' className='selection:bg-purple selection:text-white font-rflex h-full bg-black text-white'>
       <head>
         <Meta />
         <Links />
       </head>
       <body>
+        <Navbar />
         <Outlet />
         <ScrollRestoration />
         <Scripts />
@@ -48,7 +51,7 @@ export default function App() {
             __html: `window.ENV = ${JSON.stringify(data.ENV)};`,
           }}
         />
-        <LiveReload />
+        {process.env.NODE_ENV === 'development' && <LiveReload />}
       </body>
     </html>
   )

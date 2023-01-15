@@ -29,14 +29,14 @@ export async function action({ request }: ActionArgs) {
   if (typeof password !== 'string' || password.length === 0) {
     return json(
       { errors: { password: 'Password is required' } },
-      { status: 400 }
+      { status: 400 },
     )
   }
 
   if (password.length < 8) {
     return json(
       { errors: { password: 'Password is too short' } },
-      { status: 400 }
+      { status: 400 },
     )
   }
 
@@ -47,7 +47,7 @@ export async function action({ request }: ActionArgs) {
   if (!user) {
     return json(
       { errors: { password: 'Invalid email or password' } },
-      { status: 400 }
+      { status: 400 },
     )
   }
   userId = user.id
@@ -92,16 +92,15 @@ export default function LoginPage() {
 
   return (
     <>
-      <Navbar title={'login'} />
       <main>
-        <div className='border-accent-1 bg-primary mx-auto mt-40 max-h-[360px] w-[720px] border blur-none drop-shadow-[32px_32px_0_rgba(43,35,185)]'>
+        <div className='bg-primary mx-auto mt-40 max-h-[360px] w-[720px] border border-accent-1 blur-none drop-shadow-[32px_32px_0_rgba(43,35,185)]'>
           <Form
             method='post'
             className='mx-auto flex max-w-2xl flex-col gap-5 p-14'
           >
             <div>
               <label
-                className='text-xl text-accent-1 font-medium normal-case'
+                className='text-xl font-medium normal-case text-accent-1'
                 htmlFor='email'
               >
                 Email:
@@ -116,11 +115,11 @@ export default function LoginPage() {
                 aria-invalid={emailError ? true : undefined}
                 aria-describedby='email-error'
                 placeholder='you@example.com'
-                className='border-accent-1/30 bg-primary placeholder-accent-2/40 focus:border-accent-1 focus:ring-accent-1 h-11 w-full border-[1.5px] p-2 font-light placeholder:font-light placeholder:italic focus:ring focus:ring-opacity-20 focus:ring-offset-0'
+                className='bg-primary h-11 w-full border-[1.5px] border-accent-1/30 p-2 font-light placeholder-accent-2/40 placeholder:font-light placeholder:italic focus:border-accent-1 focus:ring focus:ring-accent-1 focus:ring-opacity-20 focus:ring-offset-0'
               />
               {emailError && (
                 <div
-                  className='text-accent-2 pt-1 normal-case'
+                  className='pt-1 normal-case text-accent-2'
                   id='email-error'
                 >
                   {emailError}
@@ -130,7 +129,7 @@ export default function LoginPage() {
 
             <div>
               <label
-                className='text-xl text-accent-1 font-medium normal-case'
+                className='text-xl font-medium normal-case text-accent-1'
                 htmlFor='password'
               >
                 Password:
@@ -144,10 +143,10 @@ export default function LoginPage() {
                 aria-invalid={passwordError ? true : undefined}
                 aria-describedby='password-error'
                 required
-                className=' border-accent-1/30 bg-primary focus:border-accent-1 focus:ring-accent-1 h-11 w-full border-[1.5px] p-2 font-light focus:ring focus:ring-opacity-20 focus:ring-offset-0'
+                className=' bg-primary h-11 w-full border-[1.5px] border-accent-1/30 p-2 font-light focus:border-accent-1 focus:ring focus:ring-accent-1 focus:ring-opacity-20 focus:ring-offset-0'
               />
               {passwordError && (
-                <div className='text-accent-2 pt-1' id='password-error'>
+                <div className='pt-1 text-accent-2' id='password-error'>
                   {passwordError}
                 </div>
               )}
@@ -158,11 +157,11 @@ export default function LoginPage() {
                 id='remember'
                 name='remember'
                 type='checkbox'
-                className='border-accent-1/30 bg-primary text-accent-1 focus:border-accent-1 focus:ring-accent-1 h-4 w-4 border-[1.5px] font-light focus:ring focus:ring-opacity-20 focus:ring-offset-0'
+                className='bg-primary h-4 w-4 border-[1.5px] border-accent-1/30 font-light text-accent-1 focus:border-accent-1 focus:ring focus:ring-accent-1 focus:ring-opacity-20 focus:ring-offset-0'
               />
               <label
                 htmlFor='remember'
-                className='text-sm text-accent-1 ml-2 block'
+                className='ml-2 block text-sm text-accent-1'
               >
                 Remember me
               </label>
@@ -173,7 +172,7 @@ export default function LoginPage() {
               name='submit'
               type='submit'
               value='login'
-              className='bg-accent-1 text-xl text-primary hover:bg-accent-1/90 focus:ring-accent-1 mx-auto h-12 w-32 focus:outline-none focus:ring focus:ring-opacity-20 focus:ring-offset-0'
+              className='text-primary mx-auto h-12 w-32 bg-accent-1 text-xl hover:bg-accent-1/90 focus:outline-none focus:ring focus:ring-accent-1 focus:ring-opacity-20 focus:ring-offset-0'
             >
               log in
             </button>

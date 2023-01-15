@@ -4,9 +4,8 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer utilities {
-  .title {
-    font-variation-settings: 'GRAD' 80, 'wght' 800, 'slnt' 0, 'XTRA' 468, 'XOPQ' 110,
-      'YOPQ' 40, 'YTLC' 540, 'YTUC' 712, 'YTAS' 750, 'YTDE' -240, 'YTFI' 738;
-  }
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
