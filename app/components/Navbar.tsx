@@ -3,30 +3,41 @@ import clsx from 'clsx'
 
 import { useOptionalAdminUser } from '~/utils'
 
+const ListItem = ({ children }: { children: React.ReactNode }) => (
+  <li
+    className={clsx(
+      'rounded-lg px-3 py-2 transition-colors ease-out',
+      'hover:bg-accent',
+    )}
+  >
+    {children}
+  </li>
+)
+
 export default function Navbar() {
   const adminUser = useOptionalAdminUser()
 
   return (
     <nav className='mx-auto mt-16 max-w-3xl'>
-      <ul className='flex gap-4 transition-all delay-500 ease-out'>
+      <ul className='flex gap-4'>
         <NavLink
           className={({ isActive }) => clsx({ 'font-bold': isActive })}
           to='/'
         >
-          <li className='rounded-lg p-2 hover:bg-accent'>Blogs</li>
+          <ListItem>Blogs</ListItem>
         </NavLink>
         <NavLink
           className={({ isActive }) => clsx({ 'font-bold': isActive })}
           to='/about'
         >
-          <li className='rounded-lg px-3 py-2 hover:bg-accent'>About</li>
+          <ListItem>About</ListItem>
         </NavLink>
         {adminUser ? (
           <NavLink
             className={({ isActive }) => clsx({ 'font-bold': isActive })}
-            to='/'
+            to='/admin'
           >
-            <li className='rounded-lg px-3 py-2 hover:bg-accent'>Admin</li>
+            <ListItem>Admin</ListItem>
           </NavLink>
         ) : null}
       </ul>

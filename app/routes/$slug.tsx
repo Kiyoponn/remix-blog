@@ -1,6 +1,7 @@
 import { json, LoaderArgs, MetaFunction } from '@remix-run/node'
 import { useLoaderData } from '@remix-run/react'
 import { marked } from 'marked'
+import readingTime from 'reading-time'
 import invariant from 'tiny-invariant'
 import Page from '~/components/Page'
 import { getBlog } from '~/models/blog.server'
@@ -28,15 +29,30 @@ export const meta: MetaFunction = () => {
 export default function Blog() {
   const { blog, html } = useLoaderData<typeof loader>()
 
+  const date = (d: string) =>
+    new Date(d).toLocaleDateString('en-IN', {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+    })
+
   return (
-    <Page>
-        <h1 className='text-3xl font-bold mb-4'>{blog.title}</h1>
-        <div className='text-neutral-90 text-body-lg'>
-          <article
-            className='prose prose-invert'
-            dangerouslySetInnerHTML={{ __html: html }}
-          />
-        </div>
+    <Page title={blog.title}>
+      <p className='mt-4 flex justify-between text-base text-accent-6'>
+        <span>
+          Raju Khattri /{' '}
+          {blog.updatedAt === blog.createdAt
+            ? date(blog.createdAt)
+            : date(blog.updatedAt)}
+        </span>
+        {readingTime(blog.markdown).text}
+      </p>
+      <div className='text-neutral-90 text-body-lg mt-10 mb-32'>
+        <article
+          className='prose prose-invert'
+          dangerouslySetInnerHTML={{ __html: html }}
+        />
+      </div>
     </Page>
   )
 }
