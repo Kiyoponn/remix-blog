@@ -48,11 +48,13 @@ export async function action({ request, params }: LoaderArgs) {
   }
 
   const title = formData.get('title')
+  const subtitle = formData.get('subtitle')
   const slug = formData.get('slug')
   const markdown = formData.get('markdown')
 
   const errors = {
     title: title ? null : 'title is required',
+    subtitle: subtitle ? null : 'subtitle is required',
     slug: slug ? null : 'slug is required',
     markdown: markdown ? null : 'markdown is required',
   }
@@ -62,13 +64,14 @@ export async function action({ request, params }: LoaderArgs) {
   }
 
   invariant(typeof title === 'string', 'title must be a string')
+  invariant(typeof subtitle === 'string', 'title must be a string')
   invariant(typeof slug === 'string', 'slug must be a string')
   invariant(typeof markdown === 'string', 'markdown must be a string')
 
   if (params.slug === 'new') {
-    await createBlog({ title, slug, markdown })
+    await createBlog({ title, subtitle, slug, markdown })
   } else {
-    await updateBlog({ title, slug, markdown }, params.slug)
+    await updateBlog({ title, subtitle, slug, markdown }, params.slug)
   }
 
   return redirect(`/admin`)
@@ -91,14 +94,14 @@ export default function PostAdmin() {
   return (
     <div className='bg-primary w-full'>
       <Form
-        className='text-accent-1 my-11 mx-auto flex w-[480px] flex-col gap-7 normal-case'
+        className='my-11 mx-auto flex w-[480px] flex-col gap-7 normal-case text-accent-1'
         method='post'
       >
         <div>
           <label>
             Post Title:{' '}
             {errors?.title ? (
-              <em className='text-accent-2 font-light'>{errors.title}</em>
+              <em className='font-light text-accent-2'>{errors.title}</em>
             ) : null}
             <input
               type='text'
@@ -112,9 +115,25 @@ export default function PostAdmin() {
         </div>
         <div>
           <label>
+            Post subtitle:{' '}
+            {errors?.subtitle ? (
+              <em className='font-light text-accent-2'>{errors.subtitle}</em>
+            ) : null}
+            <input
+              type='text'
+              name='subtitle'
+              key={data?.blog?.slug ?? 'new'}
+              defaultValue={data?.blog?.subtitle}
+              placeholder='blog subtitle'
+              className={`${inputClassName} text-tertiary font-light`}
+            />
+          </label>
+        </div>
+        <div>
+          <label>
             Post Slug:{' '}
             {errors?.slug ? (
-              <em className='text-accent-2 font-light'>{errors.slug}</em>
+              <em className='font-light text-accent-2'>{errors.slug}</em>
             ) : null}
             <input
               type='text'
@@ -131,7 +150,7 @@ export default function PostAdmin() {
           <label htmlFor='markdown'>
             Markdown:{' '}
             {errors?.markdown ? (
-              <em className='text-accent-2 font-light'>{errors.markdown}</em>
+              <em className='font-light text-accent-2'>{errors.markdown}</em>
             ) : null}
           </label>
           <textarea
