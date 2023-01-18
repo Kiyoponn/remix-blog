@@ -2,6 +2,7 @@ import { Link, useLoaderData } from '@remix-run/react'
 import clsx from 'clsx'
 import Page from '~/components/Page'
 import { getBlogs } from '~/models/blog.server'
+import { formatDate } from '~/utils'
 
 export const loader = async () => {
   const blogs = await getBlogs()
@@ -20,13 +21,10 @@ export default function Blogs() {
       <div className='mt-16'>
         <ul>
           {blogs.map((blog) => {
-            const date = new Date(blog.updatedAt)
-              .toLocaleDateString('en-IN', {
-                year: 'numeric',
-                month: 'numeric',
-                day: 'numeric',
-              })
-              .replace(/\//g, '.')
+            const date = formatDate(blog.updatedAt, 'numeric').replace(
+              /\//g,
+              '.',
+            )
 
             return (
               <li key={blog.slug}>

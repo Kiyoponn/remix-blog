@@ -7,7 +7,7 @@ import {
   useParams,
   useTransition,
 } from '@remix-run/react'
-import { LoaderArgs } from '@remix-run/server-runtime'
+import type { LoaderArgs } from '@remix-run/server-runtime'
 import invariant from 'tiny-invariant'
 import { ErrorFallback } from '~/ErrorFallback'
 

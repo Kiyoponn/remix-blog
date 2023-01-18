@@ -6,7 +6,6 @@ import { createUserSession, getUserId } from '~/session.server'
 import { safeRedirect, validateEmail } from '~/utils'
 
 import * as React from 'react'
-import Navbar from '~/components/Navbar'
 import { verifyLogin } from '~/models/user.server'
 
 export async function loader({ request }: LoaderArgs) {

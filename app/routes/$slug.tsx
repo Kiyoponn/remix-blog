@@ -1,10 +1,12 @@
-import { json, LoaderArgs, MetaFunction } from '@remix-run/node'
+import type { LoaderArgs, MetaFunction } from '@remix-run/node'
+import { json } from '@remix-run/node'
 import { useLoaderData } from '@remix-run/react'
 import { marked } from 'marked'
 import readingTime from 'reading-time'
 import invariant from 'tiny-invariant'
 import Page from '~/components/Page'
 import { getBlog } from '~/models/blog.server'
+import { formatDate } from '~/utils'
 
 export const loader = async ({ params }: LoaderArgs) => {
   invariant(params.slug, `params.slug is required`)
@@ -29,21 +31,14 @@ export const meta: MetaFunction = () => {
 export default function Blog() {
   const { blog, html } = useLoaderData<typeof loader>()
 
-  const date = (d: string) =>
-    new Date(d).toLocaleDateString('en-IN', {
-      year: 'numeric',
-      month: 'long',
-      day: 'numeric',
-    })
-
   return (
     <Page title={blog.title}>
       <p className='mt-4 flex justify-between text-base text-accent-6'>
         <span>
           Raju Khattri /{' '}
           {blog.updatedAt === blog.createdAt
-            ? date(blog.createdAt)
-            : date(blog.updatedAt)}
+            ? formatDate(blog.createdAt, 'long')
+            : formatDate(blog.updatedAt, 'long')}
         </span>
         {readingTime(blog.markdown).text}
       </p>
