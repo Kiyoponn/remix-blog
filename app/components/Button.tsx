@@ -1,71 +1,137 @@
 import { Link } from '@remix-run/react'
 import { cva, type VariantProps } from 'class-variance-authority'
 
-interface ButtonProps extends VariantProps<typeof buttonClasses> {
+export interface ButtonProps extends VariantProps<typeof buttonStyles> {
   children: React.ReactNode
   href: string
 }
 
-const buttonClasses = cva(
-  [
-    'px-6 h-10 rounded text-center flex items-center outline-none text-label-lg font-medium uppercase',
-    'disabled:text-opacity-content disabled:bg-opacity-container disabled:bg-on-surface disabled:text-on-surface disabled:shadow-none',
-  ],
+const buttonStyles = cva(
+  'flex items-center max-w-full font-medium justify-center border border-transparent transition-all rounded-5 px-3',
   {
     variants: {
+      size: {
+        small: 'h-8 text-base leading-md',
+        medium: 'h-10 text-base leading-md',
+        large: 'h-12 text-md leading-lg',
+      },
       variant: {
-        text: [],
-        outline: [],
-        tonal: [
-          'bg-secondary-container text-on-secondary-container',
-          'hover:bg-on-secondary-container hover:bg-opacity-hovered hover:shadow-elvation-1 hover:text-on-secondary-container',
+        default: [
+          'duration-150 ease-in-out ',
+          'hover:bg-black hover:text-white hover:border-white',
         ],
-        filled: [
-          'bg-primary text-on-primary',
-          'hover:bg-primary hover:shadow-elvation-1',
-          'focus:bg-on-primary focus:bg-opacity-focused focus:shadow-elvation-0',
+        shadow: [
+          'duration-150 ease-in-out translate-x-0',
+          'hover:-translate-y-[2px]',
         ],
-        elevated: [
-          'bg-surface shadow-elvation-1 text-primary',
-          'hover:shadow-elvation-2 hover:bg-primary hover:bg-opacity-hovered',
-          'focus:bg-primary focus:bg-opacity-focused',
-          'active:bg-opacity-pressed active:bg-primary',
+        ghost: '!bg-black hover:bg-accent',
+      },
+      type: {
+        primary: 'bg-white text-black',
+        secondary: [
+          '!bg-black text-accent-5 border-accent-3',
+          'hover:text-white',
         ],
+        error: 'bg-error !text-white',
+        warning: 'bg-warning !text-white',
+        alert: 'bg-pink !text-white',
+        violet: 'bg-violet !text-white',
       },
     },
+
+    compoundVariants: [
+      // default
+      {
+        variant: 'default',
+        type: 'error',
+        class: 'hover:border-error hover:!text-error',
+      },
+      {
+        variant: 'default',
+        type: 'alert',
+        class: 'hover:border-pink hover:!text-pink',
+      },
+      {
+        variant: 'default',
+        type: 'warning',
+        class: 'hover:border-warning hover:!text-warning',
+      },
+      {
+        variant: 'default',
+        type: 'violet',
+        class: 'hover:border-violet hover:!text-violet',
+      },
+
+      // ghost
+      {
+        variant: 'ghost',
+        type: 'primary',
+        class: [' !text-white', 'hover:!bg-accent'],
+      },
+      {
+        variant: 'ghost',
+        type: 'secondary',
+        class: ['!border-transparent ', 'hover:text-accent-5 hover:!bg-accent'],
+      },
+      {
+        variant: 'ghost',
+        type: 'error',
+        class: [
+          '!text-error bg-gradient-to-r from-lighten to-lighten',
+          'hover:!bg-error',
+        ],
+      },
+      {
+        variant: 'ghost',
+        type: 'warning',
+        class: [
+          '!text-warning bg-gradient-to-r from-lighten to-lighten',
+          'hover:!bg-warning',
+        ],
+      },
+      {
+        variant: 'ghost',
+        type: 'alert',
+        class: [
+          '!text-pink bg-gradient-to-r from-lighten to-lighten',
+          'hover:!bg-pink',
+        ],
+      },
+      {
+        variant: 'ghost',
+        type: 'violet',
+        class: [
+          '!text-violet bg-gradient-to-r from-lighten to-lighten',
+          'hover:!bg-violet',
+        ],
+      },
+    ],
+
     defaultVariants: {
-      variant: 'filled',
+      size: 'medium',
+      variant: 'default',
+      type: 'primary',
     },
   }
 )
 
-export const classTest = () => {
-  return (
-    <>
-      <button className=''>Test</button>
-    </>
-  )
-}
-
-export const Button = ({ children, href, variant }: ButtonProps) => {
-  return (
-    <Link to={href} className={buttonClasses({ variant })}>
-      {children}
-    </Link>
-    // <button disabled className={buttonClasses({ variant })}>{ children }</button>
-  )
-}
-
-export const LogOutButton = ({
+export const Button = ({
   children,
+  href,
+  size,
   variant,
-}: Pick<ButtonProps, 'children' | 'variant'>) => {
+  type,
+  ...prorps
+}: ButtonProps) => {
   return (
-    <button
-      className={`${buttonClasses({ variant })}
-      }`}
-    >
-      {children}
-    </button>
+    <Link to={href} className='w-fit'>
+      <button
+        type='button'
+        className={buttonStyles({ size, variant, type })}
+        {...prorps}
+      >
+        {children}
+      </button>
+    </Link>
   )
 }

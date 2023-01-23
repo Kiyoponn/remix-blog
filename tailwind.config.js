@@ -18,9 +18,18 @@ module.exports = {
           },
         },
       },
+      borderRadius: {
+        // 5px in rem
+        5: '0.3125rem',
+      },
     },
     fontFamily: {
       rflex: ['Roboto Flex', 'sans-serif'],
+    },
+    lineHeight: {
+      sm: '0.875rem',
+      md: '1.25rem',
+      lg: '1.5rem',
     },
     fontSize: {
       '2xs': ['0.625rem', '0.75rem'],
@@ -37,6 +46,8 @@ module.exports = {
     colors: {
       black: '#000',
       white: '#FFF',
+      transparent: 'transparent',
+      lighten: '#000000bf',
       accent: {
         DEFAULT: '#1A1A1A',
         1: '#111',
