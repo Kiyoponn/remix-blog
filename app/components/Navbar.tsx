@@ -1,15 +1,17 @@
-import { NavLink } from '@remix-run/react'
+import { Form, NavLink } from '@remix-run/react'
 import clsx from 'clsx'
 
-import { useOptionalAdminUser } from '~/utils'
+import { useOptionalAdminUser, useOptionalUser } from '~/utils'
+import { Button } from './Button'
 
 export default function Navbar() {
   const adminUser = useOptionalAdminUser()
+  const user = useOptionalUser()
 
-  const hoverEffect = 'px-3 py-2 rounded-[5px] hover:bg-accent'
+  const hoverEffect = 'px-3 py-2 rounded-5 hover:bg-accent'
 
   return (
-    <nav className='mx-auto mt-16 flex max-w-3xl items-center justify-between'>
+    <nav className='mx-auto flex max-w-3xl items-center justify-between pt-12'>
       <div className='flex gap-3'>
         <NavLink
           className={({ isActive }) =>
@@ -27,16 +29,21 @@ export default function Navbar() {
         >
           About
         </NavLink>
+        {adminUser ? (
+          <NavLink
+            className={({ isActive }) =>
+              clsx({ 'font-bold': isActive }, hoverEffect)
+            }
+            to='/admin'
+          >
+            Admin
+          </NavLink>
+        ) : null}
       </div>
-      {adminUser ? (
-        <NavLink
-          className={({ isActive }) =>
-            clsx({ 'font-bold': isActive }, hoverEffect)
-          }
-          to='/admin'
-        >
-          Admin
-        </NavLink>
+      {user ? (
+        <Form action='/logout' method='post'>
+          <Button variant='ghost' type='error'>Logout</Button>
+        </Form>
       ) : null}
     </nav>
   )

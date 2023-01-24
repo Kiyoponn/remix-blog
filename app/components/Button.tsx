@@ -1,19 +1,27 @@
 import { Link } from '@remix-run/react'
 import { cva, type VariantProps } from 'class-variance-authority'
+import clsx from 'clsx'
 
 export interface ButtonProps extends VariantProps<typeof buttonStyles> {
   children: React.ReactNode
-  href: string
+  href?: string
 }
 
 const buttonStyles = cva(
-  'flex items-center max-w-full font-medium justify-center border border-transparent transition-all rounded-5 px-3',
+  [
+    'flex items-center max-w-full font-medium justify-center border border-transparent transition-all rounded-5 px-3 outline-none',
+    'focus:ring focus:ring-accent-3 focus:ring-opacity-50 focus:ring-offset-0',
+  ],
   {
     variants: {
       size: {
         small: 'h-8 text-base leading-md',
         medium: 'h-10 text-base leading-md',
         large: 'h-12 text-md leading-lg',
+      },
+      width: {
+        fit: 'w-fit',
+        full: 'w-full',
       },
       variant: {
         default: [
@@ -109,6 +117,7 @@ const buttonStyles = cva(
 
     defaultVariants: {
       size: 'medium',
+      width: 'fit',
       variant: 'default',
       type: 'primary',
     },
@@ -119,19 +128,34 @@ export const Button = ({
   children,
   href,
   size,
+  width,
   variant,
   type,
-  ...prorps
+  ...props
 }: ButtonProps) => {
   return (
-    <Link to={href} className='w-fit'>
-      <button
-        type='button'
-        className={buttonStyles({ size, variant, type })}
-        {...prorps}
-      >
-        {children}
-      </button>
-    </Link>
+    <>
+      {href ? (
+        <Link to={href} className='w-fit'>
+          <button
+            type='button'
+            className={buttonStyles({ size, variant, type })}
+            {...props}
+          >
+            {children}
+          </button>
+        </Link>
+      ) : (
+        <button
+          type='submit'
+          name='submit'
+          value='submit'
+          className={clsx(buttonStyles({ size, width, variant, type }))}
+          {...props}
+        >
+          {children}
+        </button>
+      )}
+    </>
   )
 }

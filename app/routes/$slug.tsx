@@ -42,7 +42,7 @@ export default function Blog() {
         </span>
         {readingTime(blog.markdown).text}
       </p>
-      <div className='text-neutral-90 text-body-lg mt-10 mb-32'>
+      <div className='text-neutral-90 text-body-lg my-10'>
         <article
           className='prose prose-invert'
           dangerouslySetInnerHTML={{ __html: html }}

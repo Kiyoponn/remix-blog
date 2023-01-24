@@ -5,7 +5,11 @@ import { Form, useActionData, useSearchParams } from '@remix-run/react'
 import { createUserSession, getUserId } from '~/session.server'
 import { safeRedirect, validateEmail } from '~/utils'
 
+import clsx from 'clsx'
 import * as React from 'react'
+import { Button } from '~/components/Button'
+import Input from '~/components/Input'
+import Page from '~/components/Page'
 import { verifyLogin } from '~/models/user.server'
 
 export async function loader({ request }: LoaderArgs) {
@@ -69,7 +73,7 @@ export default function LoginPage() {
   const [searchParamas] = useSearchParams()
   const redirectTo = searchParamas.get('redirectTo') || '/'
   const actionData = useActionData<typeof action>()
-  const emaiRef = React.useRef<HTMLInputElement>(null)
+  const emailRef = React.useRef<HTMLInputElement>(null)
   const passwordRef = React.useRef<HTMLInputElement>(null)
 
   let emailError: string | null = null
@@ -83,93 +87,144 @@ export default function LoginPage() {
 
   React.useEffect(() => {
     if (emailError) {
-      emaiRef.current?.focus()
+      emailRef.current?.focus()
     } else if (passwordError) {
       passwordRef.current?.focus()
     }
   }, [emailError, passwordError])
 
   return (
-    <main>
-      <div className=''>
-        <Form
-          method='post'
-          className='mx-auto flex max-w-2xl flex-col gap-5 p-14'
-        >
-          <div>
-            <label
-              className='text-xl font-medium normal-case text-white'
-              htmlFor='email'
-            >
-              Email:
-            </label>
-            <input
-              ref={emaiRef}
-              id='email'
-              name='email'
-              type='email'
-              required
-              autoComplete='email'
-              aria-invalid={emailError ? true : undefined}
-              aria-describedby='email-error'
-              placeholder='you@example.com'
-              className='bg-primary h-11 w-full border-[1.5px] border-accent-1/30 p-2 font-light placeholder-accent-2/40 placeholder:font-light placeholder:italic focus:border-accent-1 focus:ring focus:ring-accent-1 focus:ring-opacity-20 focus:ring-offset-0'
-            />
-            {emailError && (
-              <div className='pt-1 normal-case text-accent-2' id='email-error'>
-                {emailError}
-              </div>
+    <Page className='flex h-3/4 items-center justify-center'>
+      <Form method='post' className='flex w-80 flex-col gap-4'>
+        <div>
+          <Input
+            ref={emailRef}
+            id='email'
+            name='email'
+            type='email'
+            required
+            autoComplete='email'
+            aria-invalid={emailError ? true : undefined}
+            aria-describedby='email-error'
+            placeholder='you@example.com'
+            label='Email'
+          />
+          {emailError && (
+            <div className='pt-1 normal-case text-error' id='email-error'>
+              {emailError}
+            </div>
+          )}
+        </div>
+        <div>
+          <Input
+            ref={passwordRef}
+            id='password'
+            name='password'
+            type='password'
+            required
+            autoComplete='password'
+            aria-invalid={passwordError ? true : undefined}
+            aria-describedby='password-error'
+            placeholder='********'
+            label='Password'
+          />
+          {passwordError && (
+            <div className='pt-1 text-error' id='password-error'>
+              {passwordError}
+            </div>
+          )}
+        </div>
+
+        {/* class="
+          rounded
+          border-gray-300
+          text-indigo-600
+          shadow-sm
+          focus:border-indigo-300
+          focus:ring
+          focus:ring-offset-0
+          focus:ring-indigo-200
+          focus:ring-opacity-50
+        " */}
+
+        <div className='flex items-center'>
+          <input
+            id='remember'
+            name='remember'
+            type='checkbox'
+            className={clsx(
+              'cursor-pointer transition-all duration-150 ease-in-out',
+              'rounded-5 border-accent-5 bg-black outline-none',
+              ' hover:border-white',
+              'focus:border-accent-5 focus:ring focus:ring-accent-3 focus:ring-opacity-50 focus:ring-offset-0',
+              'text-pink'
             )}
-          </div>
+          />
+          <label htmlFor='remember' className='ml-2 block text-sm text-white'>
+            Remember me
+          </label>
+        </div>
 
-          <div>
-            <label
-              className='text-xl font-medium normal-case text-white'
-              htmlFor='password'
-            >
-              Password:
-            </label>
-            <input
-              ref={passwordRef}
-              id='password'
-              name='password'
-              type='password'
-              autoComplete='current-password'
-              aria-invalid={passwordError ? true : undefined}
-              aria-describedby='password-error'
-              required
-              className=' bg-primary h-11 w-full border-[1.5px] border-accent-1/30 p-2 font-light focus:border-accent-1 focus:ring focus:ring-accent-1 focus:ring-opacity-20 focus:ring-offset-0'
-            />
-            {passwordError && (
-              <div className='pt-1 text-accent-2' id='password-error'>
-                {passwordError}
-              </div>
-            )}
-          </div>
+        <input type='hidden' name='redirectTo' value={redirectTo} />
+        <Button size='large' width='full'>Login</Button>
 
-          <div className='flex items-center'>
-            <input
-              id='remember'
-              name='remember'
-              type='checkbox'
-              className='bg-primary h-4 w-4 border-[1.5px] border-accent-1/30 font-light text-white focus:border-accent-1 focus:ring focus:ring-accent-1 focus:ring-opacity-20 focus:ring-offset-0'
-            />
-            <label htmlFor='remember' className='ml-2 block text-sm text-white'>
-              Remember me
-            </label>
-          </div>
+        {/* <div>
+          <label className='block' htmlFor='email'>
+            Email
+          </label>
+          <input
+            ref={emaiRef}
+            id='email'
+            name='email'
+            type='email'
+            required
+            autoComplete='email'
+            aria-invalid={emailError ? true : undefined}
+            aria-describedby='email-error'
+            placeholder='you@example.com'
+            className=''
+          />
+          {emailError && (
+            <div className='pt-1 normal-case text-error' id='email-error'>
+              {emailError}
+            </div>
+          )}
+        </div>
 
-          <input type='hidden' name='redirectTo' value={redirectTo} />
-          <button
-            name='submit'
-            type='submit'
-            value='login'
-            className='text-primary mx-auto h-12 w-32 bg-accent-1 text-xl hover:bg-accent-1/90 focus:outline-none focus:ring focus:ring-accent-1 focus:ring-opacity-20 focus:ring-offset-0'
-          >
-            log in
-          </button>
-        </Form>
-      </div>
-    </main>
+        <div>
+          <label className='block' htmlFor='password'>
+            Password
+          </label>
+          <input
+            ref={passwordRef}
+            id='password'
+            name='password'
+            type='password'
+            autoComplete='current-password'
+            aria-invalid={passwordError ? true : undefined}
+            aria-describedby='password-error'
+            required
+            className=''
+          />
+          {passwordError && (
+            <div className='pt-1 text-error' id='password-error'>
+              {passwordError}
+            </div>
+          )}
+        </div>
+
+        <div className='flex items-center'>
+          <input id='remember' name='remember' type='checkbox' className='' />
+          <label htmlFor='remember' className='ml-2 block text-sm text-white'>
+            Remember me
+          </label>
+        </div>
+
+        <input type='hidden' name='redirectTo' value={redirectTo} />
+        <button name='submit' type='submit' value='login' className=''>
+          log in
+        </button> */}
+      </Form>
+    </Page>
   )
 }

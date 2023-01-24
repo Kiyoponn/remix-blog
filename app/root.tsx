@@ -7,7 +7,7 @@ import {
   Outlet,
   Scripts,
   ScrollRestoration,
-  useLoaderData,
+  useLoaderData
 } from '@remix-run/react'
 import Navbar from './components/Navbar'
 
@@ -46,13 +46,13 @@ export default function App() {
   return (
     <html
       lang='en'
-      className='h-full bg-black font-rflex text-white selection:bg-purple selection:text-white'
+      className='bg-black font-rflex text-white selection:bg-purple selection:text-white'
     >
       <head>
         <Meta />
         <Links />
       </head>
-      <body>
+      <body className='h-screen '>
         <Navbar />
         <Outlet />
         <ScrollRestoration />
