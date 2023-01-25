@@ -23,7 +23,7 @@ export default function Blogs() {
           {blogs.map((blog) => {
             const date = formatDate(blog.updatedAt, 'numeric').replace(
               /\//g,
-              '.',
+              '.'
             )
 
             return (
@@ -33,7 +33,7 @@ export default function Blogs() {
                     <h1
                       className={clsx(
                         'text-lg font-medium',
-                        'after:block after:h-[1px] after:w-full after:scale-0 after:bg-white after:transition-transform after:duration-200 after:ease-in-out after:content-[""] group-hover:after:scale-100',
+                        'after:block after:h-[1px] after:w-full after:scale-0 after:bg-white after:transition-transform after:duration-200 after:ease-in-out after:content-[""] group-hover:after:scale-100'
                       )}
                     >
                       {blog.title}

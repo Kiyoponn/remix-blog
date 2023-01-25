@@ -3,13 +3,17 @@ import { cva, type VariantProps } from 'class-variance-authority'
 import clsx from 'clsx'
 
 export interface ButtonProps extends VariantProps<typeof buttonStyles> {
+  type?: 'button' | 'submit' | 'reset'
+  name?: string
+  value?: string
+  disabled?: boolean
   children: React.ReactNode
   href?: string
 }
 
 const buttonStyles = cva(
   [
-    'flex items-center max-w-full font-medium justify-center border border-transparent transition-all rounded-5 px-3 outline-none',
+    'flex items-center max-w-full font-medium capitalize justify-center border border-transparent transition-all rounded-5 px-3 outline-none',
     'focus:ring focus:ring-accent-3 focus:ring-opacity-50 focus:ring-offset-0',
   ],
   {
@@ -34,7 +38,7 @@ const buttonStyles = cva(
         ],
         ghost: '!bg-black hover:bg-accent',
       },
-      type: {
+      color: {
         primary: 'bg-white text-black',
         secondary: [
           '!bg-black text-accent-5 border-accent-3',
@@ -51,39 +55,39 @@ const buttonStyles = cva(
       // default
       {
         variant: 'default',
-        type: 'error',
+        color: 'error',
         class: 'hover:border-error hover:!text-error',
       },
       {
         variant: 'default',
-        type: 'alert',
+        color: 'alert',
         class: 'hover:border-pink hover:!text-pink',
       },
       {
         variant: 'default',
-        type: 'warning',
+        color: 'warning',
         class: 'hover:border-warning hover:!text-warning',
       },
       {
         variant: 'default',
-        type: 'violet',
+        color: 'violet',
         class: 'hover:border-violet hover:!text-violet',
       },
 
       // ghost
       {
         variant: 'ghost',
-        type: 'primary',
+        color: 'primary',
         class: [' !text-white', 'hover:!bg-accent'],
       },
       {
         variant: 'ghost',
-        type: 'secondary',
+        color: 'secondary',
         class: ['!border-transparent ', 'hover:text-accent-5 hover:!bg-accent'],
       },
       {
         variant: 'ghost',
-        type: 'error',
+        color: 'error',
         class: [
           '!text-error bg-gradient-to-r from-lighten to-lighten',
           'hover:!bg-error',
@@ -91,7 +95,7 @@ const buttonStyles = cva(
       },
       {
         variant: 'ghost',
-        type: 'warning',
+        color: 'warning',
         class: [
           '!text-warning bg-gradient-to-r from-lighten to-lighten',
           'hover:!bg-warning',
@@ -99,7 +103,7 @@ const buttonStyles = cva(
       },
       {
         variant: 'ghost',
-        type: 'alert',
+        color: 'alert',
         class: [
           '!text-pink bg-gradient-to-r from-lighten to-lighten',
           'hover:!bg-pink',
@@ -107,7 +111,7 @@ const buttonStyles = cva(
       },
       {
         variant: 'ghost',
-        type: 'violet',
+        color: 'violet',
         class: [
           '!text-violet bg-gradient-to-r from-lighten to-lighten',
           'hover:!bg-violet',
@@ -119,7 +123,7 @@ const buttonStyles = cva(
       size: 'medium',
       width: 'fit',
       variant: 'default',
-      type: 'primary',
+      color: 'primary',
     },
   }
 )
@@ -130,7 +134,7 @@ export const Button = ({
   size,
   width,
   variant,
-  type,
+  color,
   ...props
 }: ButtonProps) => {
   return (
@@ -139,18 +143,14 @@ export const Button = ({
         <Link to={href} className='w-fit'>
           <button
             type='button'
-            className={buttonStyles({ size, variant, type })}
-            {...props}
+            className={buttonStyles({ size, variant, color })}
           >
             {children}
           </button>
         </Link>
       ) : (
         <button
-          type='submit'
-          name='submit'
-          value='submit'
-          className={clsx(buttonStyles({ size, width, variant, type }))}
+          className={clsx(buttonStyles({ size, width, variant, color }), 'disabled:bg-black disabled:text-accent-3 disabled:border-accent-2 disabled:cursor-not-allowed')}
           {...props}
         >
           {children}

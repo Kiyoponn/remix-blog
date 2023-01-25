@@ -102,18 +102,14 @@ export default function LoginPage() {
             id='email'
             name='email'
             type='email'
+            label='Email'
+            error={emailError}
             required
             autoComplete='email'
             aria-invalid={emailError ? true : undefined}
             aria-describedby='email-error'
             placeholder='you@example.com'
-            label='Email'
           />
-          {emailError && (
-            <div className='pt-1 normal-case text-error' id='email-error'>
-              {emailError}
-            </div>
-          )}
         </div>
         <div>
           <Input
@@ -121,31 +117,15 @@ export default function LoginPage() {
             id='password'
             name='password'
             type='password'
+            label='Password'
+            error={passwordError}
             required
             autoComplete='password'
             aria-invalid={passwordError ? true : undefined}
             aria-describedby='password-error'
             placeholder='********'
-            label='Password'
           />
-          {passwordError && (
-            <div className='pt-1 text-error' id='password-error'>
-              {passwordError}
-            </div>
-          )}
         </div>
-
-        {/* class="
-          rounded
-          border-gray-300
-          text-indigo-600
-          shadow-sm
-          focus:border-indigo-300
-          focus:ring
-          focus:ring-offset-0
-          focus:ring-indigo-200
-          focus:ring-opacity-50
-        " */}
 
         <div className='flex items-center'>
           <input
@@ -153,11 +133,11 @@ export default function LoginPage() {
             name='remember'
             type='checkbox'
             className={clsx(
-              'cursor-pointer transition-all duration-150 ease-in-out',
+              'cursor-pointer text-transparent transition-all duration-150 ease-in-out',
               'rounded-5 border-accent-5 bg-black outline-none',
-              ' hover:border-white',
-              'focus:border-accent-5 focus:ring focus:ring-accent-3 focus:ring-opacity-50 focus:ring-offset-0',
-              'text-pink'
+              'hover:border-white hover:checked:border-white',
+              'focus:outline-none focus:ring focus:ring-accent-3 focus:ring-opacity-50 focus:ring-offset-0 focus:checked:border-accent-5 focus:hover:border-white',
+              'checked:border-accent-5 checked:text-transparent '
             )}
           />
           <label htmlFor='remember' className='ml-2 block text-sm text-white'>
@@ -166,64 +146,9 @@ export default function LoginPage() {
         </div>
 
         <input type='hidden' name='redirectTo' value={redirectTo} />
-        <Button size='large' width='full'>Login</Button>
-
-        {/* <div>
-          <label className='block' htmlFor='email'>
-            Email
-          </label>
-          <input
-            ref={emaiRef}
-            id='email'
-            name='email'
-            type='email'
-            required
-            autoComplete='email'
-            aria-invalid={emailError ? true : undefined}
-            aria-describedby='email-error'
-            placeholder='you@example.com'
-            className=''
-          />
-          {emailError && (
-            <div className='pt-1 normal-case text-error' id='email-error'>
-              {emailError}
-            </div>
-          )}
-        </div>
-
-        <div>
-          <label className='block' htmlFor='password'>
-            Password
-          </label>
-          <input
-            ref={passwordRef}
-            id='password'
-            name='password'
-            type='password'
-            autoComplete='current-password'
-            aria-invalid={passwordError ? true : undefined}
-            aria-describedby='password-error'
-            required
-            className=''
-          />
-          {passwordError && (
-            <div className='pt-1 text-error' id='password-error'>
-              {passwordError}
-            </div>
-          )}
-        </div>
-
-        <div className='flex items-center'>
-          <input id='remember' name='remember' type='checkbox' className='' />
-          <label htmlFor='remember' className='ml-2 block text-sm text-white'>
-            Remember me
-          </label>
-        </div>
-
-        <input type='hidden' name='redirectTo' value={redirectTo} />
-        <button name='submit' type='submit' value='login' className=''>
-          log in
-        </button> */}
+        <Button size='large' width='full'>
+          Login
+        </Button>
       </Form>
     </Page>
   )

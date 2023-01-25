@@ -5,17 +5,21 @@ import {
   useCatch,
   useLoaderData,
   useParams,
-  useTransition,
+  useTransition
 } from '@remix-run/react'
 import type { LoaderArgs } from '@remix-run/server-runtime'
+import { useSpinDelay } from 'spin-delay'
 import invariant from 'tiny-invariant'
+import { Button } from '~/components/Button'
+import Input from '~/components/Input'
+import TextArea from '~/components/TextArea'
 import { ErrorFallback } from '~/ErrorFallback'
 
 import {
   createBlog,
   deleteBlog,
   getBlog,
-  updateBlog,
+  updateBlog
 } from '~/models/blog.server'
 import { requireAdminUser } from '~/session.server'
 
@@ -53,20 +57,20 @@ export async function action({ request, params }: LoaderArgs) {
   const markdown = formData.get('markdown')
 
   const errors = {
-    title: title ? null : 'title is required',
-    subtitle: subtitle ? null : 'subtitle is required',
-    slug: slug ? null : 'slug is required',
-    markdown: markdown ? null : 'markdown is required',
+    title: title ? null : 'Title is required',
+    subtitle: subtitle ? null : 'Subtitle is required',
+    slug: slug ? null : 'Slug is required',
+    markdown: markdown ? null : 'Markdown is required',
   }
   const hasErrors = Object.values(errors).some((errorMessage) => errorMessage)
   if (hasErrors) {
     return json(errors)
   }
 
-  invariant(typeof title === 'string', 'title must be a string')
-  invariant(typeof subtitle === 'string', 'title must be a string')
-  invariant(typeof slug === 'string', 'slug must be a string')
-  invariant(typeof markdown === 'string', 'markdown must be a string')
+  invariant(typeof title === 'string', 'Title must be a string')
+  invariant(typeof subtitle === 'string', 'Title must be a string')
+  invariant(typeof slug === 'string', 'Slug must be a string')
+  invariant(typeof markdown === 'string', 'Markdown must be a string')
 
   if (params.slug === 'new') {
     await createBlog({ title, subtitle, slug, markdown })
@@ -79,120 +83,101 @@ export async function action({ request, params }: LoaderArgs) {
 
 const inputClassName =
   'w-full border-[1.5px] border-accent-1/30 bg-primary p-2 placeholder-accent-2/40 placeholder:italic focus:border-accent-1 focus:ring focus:ring-accent-1 focus:ring-opacity-20 focus:ring-offset-0'
-const buttonClassName = `h-12 w-28 text-xl text-primary focus:outline-none focus:ring focus:ring-accent-1 focus:ring-opacity-20 focus:ring-offset-0`
 
 export default function PostAdmin() {
   const data = useLoaderData<typeof loader>()
   const errors = useActionData<typeof action>()
   const transition = useTransition()
 
-  const isCreating = transition.submission?.formData.get('intent') === 'create'
-  const isUpdating = transition.submission?.formData.get('intent') === 'update'
-  const isDeleting = transition.submission?.formData.get('intent') === 'delete'
+  const isCreating = useSpinDelay(
+    transition.submission?.formData.get('intent') === 'create'
+  )
+  const isUpdating = useSpinDelay(
+    transition.submission?.formData.get('intent') === 'update'
+  )
+  const isDeleting = useSpinDelay(
+    transition.submission?.formData.get('intent') === 'delete'
+  )
   const isNewBlog = !data.blog
 
   return (
-    <div className='bg-primary w-full'>
-      <Form
-        className='my-11 mx-auto flex w-[480px] flex-col gap-7 normal-case text-accent-1'
-        method='post'
-      >
-        <div>
-          <label>
-            Post Title:{' '}
-            {errors?.title ? (
-              <em className='font-light text-accent-2'>{errors.title}</em>
-            ) : null}
-            <input
-              type='text'
-              name='title'
-              key={data?.blog?.slug ?? 'new'}
-              defaultValue={data?.blog?.title}
-              placeholder='blog title'
-              className={`${inputClassName} text-tertiary font-light`}
-            />
-          </label>
-        </div>
-        <div>
-          <label>
-            Post subtitle:{' '}
-            {errors?.subtitle ? (
-              <em className='font-light text-accent-2'>{errors.subtitle}</em>
-            ) : null}
-            <input
-              type='text'
-              name='subtitle'
-              key={data?.blog?.slug ?? 'new'}
-              defaultValue={data?.blog?.subtitle}
-              placeholder='blog subtitle'
-              className={`${inputClassName} text-tertiary font-light`}
-            />
-          </label>
-        </div>
-        <div>
-          <label>
-            Post Slug:{' '}
-            {errors?.slug ? (
-              <em className='font-light text-accent-2'>{errors.slug}</em>
-            ) : null}
-            <input
-              type='text'
-              name='slug'
-              key={data?.blog?.slug ?? 'new'}
-              defaultValue={data?.blog?.slug}
-              placeholder='blog slug'
-              // disabled={Boolean(data.blog)}
-              className={`${inputClassName} text-tertiary font-light`}
-            />
-          </label>
-        </div>
-        <div>
-          <label htmlFor='markdown'>
-            Markdown:{' '}
-            {errors?.markdown ? (
-              <em className='font-light text-accent-2'>{errors.markdown}</em>
-            ) : null}
-          </label>
-          <textarea
-            name='markdown'
-            id='markdown'
-            rows={8}
-            key={data?.blog?.markdown ?? 'new'}
-            defaultValue={data?.blog?.markdown}
-            placeholder='blog body (with markdowns)'
-            className={`${inputClassName} } text-tertiary font-light`}
-          ></textarea>
-          <div className='mt-10 flex justify-end gap-4'>
-            {isNewBlog ? null : (
-              <button
-                type='submit'
-                name='intent'
-                value='delete'
-                disabled={isDeleting}
-                className={`${buttonClassName} bg-accent-2 hover:bg-accent-2/90`}
-              >
-                {isDeleting ? 'deleting...' : 'delete'}
-              </button>
-            )}
-            <button
+    <Form className='flex w-[480px] flex-col gap-3' method='post'>
+      <div>
+        <Input
+          label='Post Title'
+          error={errors?.title}
+          type='text'
+          name='title'
+          key={data?.blog?.slug ?? 'new'}
+          defaultValue={data?.blog?.title}
+          placeholder='Blog title'
+        />
+      </div>
+      <div>
+        <Input
+          label='Post Subtitle'
+          error={errors?.subtitle}
+          type='text'
+          name='subtitle'
+          key={data?.blog?.slug ?? 'new'}
+          defaultValue={data?.blog?.subtitle}
+          placeholder='Blog subtitle'
+        />
+      </div>
+      <div>
+        <Input
+          label='Post Slug'
+          error={errors?.slug}
+          type='text'
+          name='slug'
+          key={data?.blog?.slug ?? 'new'}
+          defaultValue={data?.blog?.slug}
+          placeholder='Blog Slug'
+        />
+      </div>
+      <div>
+        <TextArea
+          label='Markdown'
+          error={errors?.markdown}
+          id='markdown'
+          rows={8}
+          key={data?.blog?.markdown ?? 'new'}
+          defaultValue={data?.blog?.markdown}
+          placeholder='Blog content'
+          name='markdown'
+        />
+      </div>
+      <div>
+        <div className='mt-10 flex justify-end gap-4'>
+          {isNewBlog ? null : (
+            <Button
               type='submit'
               name='intent'
-              value={isNewBlog ? 'create' : 'update'}
-              disabled={isCreating || isUpdating}
-              className={`${buttonClassName} bg-accent-1 hover:bg-accent-1/90`}
+              value='delete'
+              color='error'
+              disabled={isDeleting}
             >
-              {isNewBlog
-                ? isCreating
-                  ? 'creating'
-                  : 'create'
-                : isUpdating
-                ? 'updating...'
-                : 'update'}
-            </button>
-          </div>
+              {isDeleting ? 'deleting...' : 'delete'}
+            </Button>
+          )}
+
+          <Button
+            type='submit'
+            name='intent'
+            value={isNewBlog ? 'create' : 'update'}
+            disabled={isCreating || isUpdating}
+          >
+            {isNewBlog
+              ? isCreating
+                ? 'creating...'
+                : 'create'
+              : isUpdating
+              ? 'updating...'
+              : 'update'}
+          </Button>
         </div>
-      </Form>
-    </div>
+      </div>
+    </Form>
   )
 }
 

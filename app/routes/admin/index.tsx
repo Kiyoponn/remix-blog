@@ -9,10 +9,10 @@ export async function loader({ request }: LoaderArgs) {
 
 export default function Admin() {
   return (
-    <div>
-      <h1 className='text-center text-xl text-accent-2 text-opacity-70'>
+    <main className='w-full'>
+      <h1 className='text-center'>
         Select a blog on left to edit or create a new one.
       </h1>
-    </div>
+    </main>
   )
 }
