@@ -9,11 +9,12 @@ export interface ButtonProps extends VariantProps<typeof buttonStyles> {
   disabled?: boolean
   children: React.ReactNode
   href?: string
+  className?: string
 }
 
 const buttonStyles = cva(
   [
-    'flex items-center max-w-full font-medium capitalize justify-center border border-transparent transition-all rounded-5 px-3 outline-none',
+    'flex items-center font-medium capitalize justify-center border border-transparent transition-all rounded-5 px-3 outline-none',
     'focus:ring focus:ring-accent-3 focus:ring-opacity-50 focus:ring-offset-0',
   ],
   {
@@ -135,6 +136,7 @@ export const Button = ({
   width,
   variant,
   color,
+  className,
   ...props
 }: ButtonProps) => {
   return (
@@ -143,14 +145,18 @@ export const Button = ({
         <Link to={href} className='w-fit'>
           <button
             type='button'
-            className={buttonStyles({ size, variant, color })}
+            className={clsx(buttonStyles({ size, variant, color }), className)}
           >
             {children}
           </button>
         </Link>
       ) : (
         <button
-          className={clsx(buttonStyles({ size, width, variant, color }), 'disabled:bg-black disabled:text-accent-3 disabled:border-accent-2 disabled:cursor-not-allowed')}
+          className={clsx(
+            buttonStyles({ size, width, variant, color }),
+            'disabled:bg-black disabled:text-accent-3 disabled:border-accent-2 disabled:cursor-not-allowed',
+            className
+          )}
           {...props}
         >
           {children}

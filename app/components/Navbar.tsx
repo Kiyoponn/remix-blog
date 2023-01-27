@@ -42,7 +42,9 @@ export default function Navbar() {
       </div>
       {user ? (
         <Form action='/logout' method='post'>
-          <Button variant='ghost' color='error'>Logout</Button>
+          <Button variant='ghost' color='error'>
+            Logout
+          </Button>
         </Form>
       ) : null}
     </nav>

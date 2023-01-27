@@ -1,3 +1,4 @@
+import type { LoaderArgs } from '@remix-run/node'
 import { json, redirect } from '@remix-run/node'
 import {
   Form,
@@ -7,7 +8,6 @@ import {
   useParams,
   useTransition
 } from '@remix-run/react'
-import type { LoaderArgs } from '@remix-run/server-runtime'
 import { useSpinDelay } from 'spin-delay'
 import invariant from 'tiny-invariant'
 import { Button } from '~/components/Button'
@@ -53,7 +53,7 @@ export async function action({ request, params }: LoaderArgs) {
 
   const title = formData.get('title')
   const subtitle = formData.get('subtitle')
-  const slug = formData.get('slug')
+  let slug = formData.get('slug')
   const markdown = formData.get('markdown')
 
   const errors = {
@@ -72,6 +72,8 @@ export async function action({ request, params }: LoaderArgs) {
   invariant(typeof slug === 'string', 'Slug must be a string')
   invariant(typeof markdown === 'string', 'Markdown must be a string')
 
+  slug = slug.toLowerCase().replace(/[^a-z0-9]/g, '-')
+
   if (params.slug === 'new') {
     await createBlog({ title, subtitle, slug, markdown })
   } else {
@@ -80,9 +82,6 @@ export async function action({ request, params }: LoaderArgs) {
 
   return redirect(`/admin`)
 }
-
-const inputClassName =
-  'w-full border-[1.5px] border-accent-1/30 bg-primary p-2 placeholder-accent-2/40 placeholder:italic focus:border-accent-1 focus:ring focus:ring-accent-1 focus:ring-opacity-20 focus:ring-offset-0'
 
 export default function PostAdmin() {
   const data = useLoaderData<typeof loader>()
@@ -101,7 +100,7 @@ export default function PostAdmin() {
   const isNewBlog = !data.blog
 
   return (
-    <Form className='flex w-[480px] flex-col gap-3' method='post'>
+    <Form className='flex w-[480px] ml-auto flex-col gap-3' method='post'>
       <div>
         <Input
           label='Post Title'

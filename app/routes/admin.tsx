@@ -1,4 +1,5 @@
 import { Link, NavLink, Outlet, useLoaderData } from '@remix-run/react'
+import { Button } from '~/components/Button'
 import Page from '~/components/Page'
 import { getBlogListItems } from '~/models/blog.server'
 
@@ -12,46 +13,40 @@ export default function AdminPage() {
 
   return (
     <Page className='mt-12 flex items-start justify-between'>
-      <nav>
+      <nav className='w-32'>
         <Link to={'/admin'}>
-          <h1 className=''>All Blogs</h1>
+          <h1 className='font-bold'>All Blogs</h1>
         </Link>
-        <div>
-          <ul className='w-32'>
-            {blogs.map((blog) => (
-              <li key={blog.slug}>
-                <NavLink
-                  className={({ isActive }) =>
-                    'hover:underline' +
-                    ' ' +
-                    (isActive
-                      ? 'text-opacity-100 underline'
-                      : 'text-opacity-70')
-                  }
-                  prefetch='intent'
-                  to={blog.slug}
-                >
-                  {blog.title}
-                </NavLink>
-              </li>
-            ))}
-            <li>
+        <ul className='mt-4 flex flex-col gap-2'>
+          {blogs.map((blog) => (
+            <li key={blog.slug}>
               <NavLink
                 className={({ isActive }) =>
-                  'flex items-center gap-1 text-xl  text-opacity-70 hover:underline' +
-                  ' ' +
-                  (isActive ? 'text-opacity-100 underline' : 'text-opacity-70')
+                  'hover:text-accent-8 ' +
+                  (isActive ? 'text-accent-7 underline' : 'text-accent-5')
                 }
                 prefetch='intent'
-                to='new'
+                to={blog.slug}
               >
-                <span>create new</span>
+                {blog.title}
               </NavLink>
             </li>
-          </ul>
-        </div>
+          ))}
+          <li>
+            <Button
+              href='new'
+              variant='ghost'
+              color='secondary'
+              className='mt-6'
+            >
+              create new
+            </Button>
+          </li>
+        </ul>
       </nav>
-      <Outlet />
+      <main className='flex-grow h-full'>
+        <Outlet />
+      </main>
     </Page>
   )
 }

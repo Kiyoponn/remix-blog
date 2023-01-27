@@ -29,7 +29,7 @@ async function seed() {
       title: 'My First Post',
       subtitle: 'This is my first post.',
       markdown: `
-# This is my first post
+## This is my first post
 
 Isn't it great?
       `.trim(),
@@ -39,7 +39,7 @@ Isn't it great?
       title: 'A Mixtape I Made Just For You',
       subtitle: 'A mixtape of my favorite songs from the 90s. Enjoy!',
       markdown: `
-# 90s Mixtape
+## 90s Mixtape
 
 - I wish (Skee-Lo)
 - This Is How We Do It (Montell Jordan)

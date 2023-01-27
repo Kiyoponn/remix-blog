@@ -1,22 +1,23 @@
 const ErrorIcon = () => {
   return (
     <svg
-      data-testid='geist-icon'
+      data-testid='error-icon'
       fill='none'
       height='20'
-      shape-rendering='geometricPrecision'
+      shapeRendering='geometricPrecision'
       stroke='currentColor'
-      stroke-linecap='round'
-      stroke-linejoin='round'
-      stroke-width='2'
+      strokeLinecap='round'
+      strokeLinejoin='round'
+      strokeWidth='2'
       viewBox='0 0 24 24'
       width='20'
     >
-      <circle cx='12' cy='12' r='10' fill='var(--geist-fill)'></circle>
-      <path d='M12 8v4' stroke='var(--geist-stroke)'></path>
-      <path d='M12 16h.01' stroke='var(--geist-stroke)'></path>
+      <circle cx='12' cy='12' r='10' fill='black'></circle>
+      <path d='M12 8v4' stroke='red'></path>
+      <path d='M12 16h.01' stroke='red'></path>
     </svg>
   )
 }
 
 export { ErrorIcon }
+
