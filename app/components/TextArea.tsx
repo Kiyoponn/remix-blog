@@ -20,7 +20,7 @@ export default function TextArea({
       {label}
       <textarea
         className={clsx(
-          'w-full rounded-5 border border-accent-2 bg-black px-3 font-medium text-white outline-none',
+          'w-full rounded-5 border border-accent-2 bg-black px-3 text-white outline-none',
           'placeholder:text-accent-2',
           'transition-colors duration-150 ease-in-out',
           'focus:border-accent-5 focus:ring focus:ring-accent-3 focus:ring-opacity-50 focus:ring-offset-0',

@@ -17,7 +17,23 @@ export const loader = async ({ params }: LoaderArgs) => {
     throw new Response('not found', { status: 404 })
   }
 
-  const html = marked(blog.markdown)
+  marked.setOptions({
+    renderer: new marked.Renderer(),
+    highlight: function (code, lang) {
+      const hljs = require('highlight.js')
+      const language = hljs.getLanguage(lang) ? lang : 'plaintext'
+      return hljs.highlight(code, { language }).value
+    },
+    langPrefix: 'language-',
+    pedantic: false,
+    gfm: true,
+    breaks: false,
+    sanitize: false,
+    smartypants: false,
+    xhtml: false,
+  })
+
+  const html = marked.parse(blog.markdown)
 
   return json({ blog, html })
 }

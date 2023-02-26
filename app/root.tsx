@@ -7,7 +7,7 @@ import {
   Outlet,
   Scripts,
   ScrollRestoration,
-  useLoaderData
+  useLoaderData,
 } from '@remix-run/react'
 import Navbar from './components/Navbar'
 
@@ -20,9 +20,13 @@ export const links: LinksFunction = () => {
     { rel: 'preconnect', href: 'https://fonts.gstatic.com' },
     {
       rel: 'stylesheet',
-      href: 'https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght@8..144,100;8..144,200;8..144,300;8..144,400;8..144,500;8..144,600;8..144,700;8..144,800;8..144,900&display=swap',
+      href: 'https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap',
     },
     { rel: 'stylesheet', href: tailwindStylesheetUrl },
+    {
+      rel: 'stylesheet',
+      href: 'https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/night-owl.min.css',
+    },
   ]
 }
 
@@ -46,13 +50,13 @@ export default function App() {
   return (
     <html
       lang='en'
-      className='bg-black font-rflex text-white selection:bg-purple selection:text-white'
+      className='bg-black font-spaceg text-white selection:bg-purple selection:text-white h-screen'
     >
       <head>
         <Meta />
         <Links />
       </head>
-      <body className='h-screen '>
+      <body>
         <Navbar />
         <Outlet />
         <ScrollRestoration />

@@ -13,17 +13,19 @@ export default function AdminPage() {
 
   return (
     <Page className='mt-12 flex items-start justify-between'>
-      <nav className='w-32'>
+      <aside className='w-32'>
         <Link to={'/admin'}>
-          <h1 className='font-bold'>All Blogs</h1>
+          <h1 className='font-bold'>All Blogs List</h1>
         </Link>
         <ul className='mt-4 flex flex-col gap-2'>
           {blogs.map((blog) => (
-            <li key={blog.slug}>
+            <li className='group' key={blog.slug}>
               <NavLink
                 className={({ isActive }) =>
-                  'hover:text-accent-8 ' +
-                  (isActive ? 'text-accent-7 underline' : 'text-accent-5')
+                  'group-hover:text-accent-8 ' +
+                  (isActive
+                    ? 'underline decoration-dotted underline-offset-4 text-accent-7'
+                    : 'text-accent-5')
                 }
                 prefetch='intent'
                 to={blog.slug}
@@ -43,7 +45,7 @@ export default function AdminPage() {
             </Button>
           </li>
         </ul>
-      </nav>
+      </aside>
       <main className='flex-grow h-full'>
         <Outlet />
       </main>

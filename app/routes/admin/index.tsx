@@ -14,7 +14,10 @@ export default function Admin() {
       Nothing to see here :(
       <em className='block'>
         Select a blog on left to edit or{' '}
-        <Link to='new' className='underline hover:text-white'>
+        <Link
+          to='new'
+          className='underline decoration-dotted hover:text-black hover:bg-white underline-offset-4'
+        >
           create
         </Link>{' '}
         a new one.

@@ -5,15 +5,34 @@ module.exports = {
       typography: {
         DEFAULT: {
           css: {
-            li: {
-              'list-style-type': 'none',
-              '&:before': {
-                content: '"– "',
-                display: 'inline-block',
-                color: '#666',
-                position: 'absolute',
-                'margin-left': '-15px',
-              },
+            code: {
+              color: '#f87171',
+              padding: '0.25rem',
+              border: '1px solid #444',
+              borderRadius: '0.375rem',
+              margin: 'auto 0.25rem',
+            },
+            'code::before': {
+              content: 'none',
+            },
+            'code::after': {
+              content: 'none',
+            },
+            pre: {
+              padding: '0.80rem 1rem',
+              'overflow-x': 'auto',
+              borderRadius: '0.375rem',
+              border: '1px solid #444',
+              backgroundColor: '#000',
+            },
+            a: {
+              'font-weight': '300',
+              'text-decoration-style': 'dotted',
+              'text-underline-offset': '4px'
+            },
+            'a:hover': {
+              backgroundColor: '#fff',
+              color: '#000',
             },
           },
         },
@@ -24,7 +43,7 @@ module.exports = {
       },
     },
     fontFamily: {
-      rflex: ['Roboto Flex', 'sans-serif'],
+      spaceg: ['Space Grotesk', 'sans-serif'],
     },
     lineHeight: {
       sm: '0.875rem',
