@@ -14,7 +14,6 @@ import Navbar from './components/Navbar'
 import { getEnv } from './env.server'
 import { getUser } from './session.server'
 import tailwindStylesheetUrl from './styles/tailwind.css'
-import { useOptionalAdminUser } from './utils'
 
 export const links: LinksFunction = () => {
   return [
