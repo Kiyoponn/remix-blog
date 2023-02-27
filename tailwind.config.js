@@ -5,7 +5,7 @@ module.exports = {
       typography: {
         DEFAULT: {
           css: {
-            code: {
+            'code:not(pre code)': {
               color: "#f87171",
               padding: "0.25rem",
               border: "1px solid #444",
