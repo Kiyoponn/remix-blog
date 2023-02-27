@@ -8,7 +8,8 @@ module.exports = {
       },
     },
     fontFamily: {
-      spaceg: ['Space Grotesk', 'sans-serif'],
+      'space-grotesk': ['Space Grotesk', 'sans-serif'],
+      'roboto-mono': ['Roboto Mono', 'monospace'],
     },
     lineHeight: {
       sm: '0.875rem',

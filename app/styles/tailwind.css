@@ -2,8 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+.prose code, .prose pre {
+  @apply font-roboto-mono
+}
+
 .prose code:not(pre > code) {
-  @apply text-pink mx-1 p-1 border border-accent-3 rounded-md before:content-none after:content-none
+  @apply text-pink font-normal mx-1 px-1 py-[0.125rem] border border-accent-3 rounded-md before:content-none after:content-none
 }
 
 .prose pre {

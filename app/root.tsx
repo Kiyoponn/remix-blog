@@ -22,6 +22,10 @@ export const links: LinksFunction = () => {
       rel: 'stylesheet',
       href: 'https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap',
     },
+    {
+      rel: 'stylesheet',
+      href: 'https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,300;0,400;1,300;1,400&display=swap',
+    },
     { rel: 'stylesheet', href: styles },
     {
       rel: 'stylesheet',
@@ -50,7 +54,7 @@ export default function App() {
   return (
     <html
       lang='en'
-      className='bg-black font-spaceg text-white selection:bg-purple selection:text-white h-screen'
+      className='bg-black font-space-grotesk text-white selection:bg-purple selection:text-white h-screen'
     >
       <head>
         <Meta />
