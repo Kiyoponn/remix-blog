@@ -11,7 +11,7 @@ export async function getBlogListItems() {
     },
     orderBy: {
       updatedAt: 'desc',
-    }
+    },
   })
 }
 
@@ -19,7 +19,7 @@ export async function getBlogs() {
   return prisma.blog.findMany({
     orderBy: {
       updatedAt: 'desc',
-    }
+    },
   })
 }
 

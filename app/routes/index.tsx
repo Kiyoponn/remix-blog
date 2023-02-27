@@ -20,7 +20,6 @@ export default function Blogs() {
       <div className='mt-16'>
         {blogs.length > 0 ? (
           <ul>
-            {/* sort the blogs in descending */}
             {blogs.map((blog) => {
               const date = formatDate(blog.updatedAt, 'numeric').replace(
                 /\//g,

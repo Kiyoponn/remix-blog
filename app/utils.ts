@@ -1,6 +1,6 @@
 import { useMatches } from '@remix-run/react'
 import { useMemo } from 'react'
-import clsx, { ClassValue } from 'clsx'
+import clsx, { type ClassValue } from 'clsx'
 import { twMerge } from 'tailwind-merge'
 
 import type { User } from '@/models/user.server'

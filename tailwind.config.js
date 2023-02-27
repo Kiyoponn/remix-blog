@@ -1,44 +1,11 @@
+const path = require('path')
+const fromRoot = (p) => path.join(__dirname, p)
+
 module.exports = {
-  content: ['./app/**/*.tsx'],
+  content: [fromRoot('./app/**/*.+(ts|tsx)')],
   theme: {
     extend: {
-      typography: {
-        DEFAULT: {
-          css: {
-            'code:not(pre code)': {
-              color: '#f87171',
-              padding: '0.25rem',
-              border: '1px solid #444',
-              borderRadius: '0.375rem',
-              margin: 'auto 0.25rem',
-            },
-            'code::before': {
-              content: 'none',
-            },
-            'code::after': {
-              content: 'none',
-            },
-            pre: {
-              padding: '0.80rem 1rem',
-              'overflow-x': 'auto',
-              borderRadius: '0.375rem',
-              border: '1px solid #444',
-              backgroundColor: '#000',
-            },
-            a: {
-              'font-weight': '300',
-              'text-decoration-style': 'dotted',
-              'text-underline-offset': '4px',
-            },
-            'a:hover': {
-              backgroundColor: '#fff',
-              color: '#000',
-            },
-          },
-        },
-      },
       borderRadius: {
-        // 5px in rem
         5: '0.3125rem',
       },
     },

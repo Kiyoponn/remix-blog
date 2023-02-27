@@ -13,7 +13,7 @@ import Navbar from './components/Navbar'
 
 import { getEnv } from './env.server'
 import { getUser } from './session.server'
-import tailwindStylesheetUrl from './styles/tailwind.css'
+import styles from './styles/tailwind.css'
 
 export const links: LinksFunction = () => {
   return [
@@ -22,7 +22,7 @@ export const links: LinksFunction = () => {
       rel: 'stylesheet',
       href: 'https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap',
     },
-    { rel: 'stylesheet', href: tailwindStylesheetUrl },
+    { rel: 'stylesheet', href: styles },
     {
       rel: 'stylesheet',
       href: 'https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/night-owl.min.css',
