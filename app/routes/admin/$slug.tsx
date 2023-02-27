@@ -154,7 +154,7 @@ export default function PostAdmin() {
               name='intent'
               value='delete'
               shade='error'
-              disabled={isDeleting}
+              disabled={isDeleting || isUpdating}
             >
               {isDeleting ? 'deleting...' : 'delete'}
             </Button>
@@ -164,7 +164,7 @@ export default function PostAdmin() {
             type='submit'
             name='intent'
             value={isNewBlog ? 'create' : 'update'}
-            disabled={isCreating || isUpdating}
+            disabled={isCreating || isUpdating || isDeleting}
           >
             {isNewBlog
               ? isCreating

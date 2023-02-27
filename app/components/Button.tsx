@@ -134,7 +134,7 @@ export const Button: React.FC<ButtonProps> = ({
     <button
       className={cn(
         buttonStyles({ size, width, variant, shade }),
-        'disabled:bg-black disabled:text-accent-3 disabled:border-accent-2 disabled:cursor-not-allowed',
+        'disabled:!bg-black disabled:!text-accent-3 disabled:!border-accent-2 disabled:cursor-not-allowed',
         className
       )}
       {...props}

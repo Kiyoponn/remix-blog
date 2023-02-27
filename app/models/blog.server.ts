@@ -9,11 +9,18 @@ export async function getBlogListItems() {
       title: true,
       subtitle: true,
     },
+    orderBy: {
+      updatedAt: 'desc',
+    }
   })
 }
 
 export async function getBlogs() {
-  return prisma.blog.findMany()
+  return prisma.blog.findMany({
+    orderBy: {
+      updatedAt: 'desc',
+    }
+  })
 }
 
 export async function getBlog(slug: string) {
