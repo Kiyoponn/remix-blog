@@ -22,10 +22,7 @@ export default function Navbar() {
         {adminUser ? (
           <NavLink
             className={({ isActive }) =>
-              cn(
-                { 'font-semibold underline': isActive },
-                hoverEffect
-              )
+              cn({ 'font-semibold underline': isActive }, hoverEffect)
             }
             to='/admin'
           >
