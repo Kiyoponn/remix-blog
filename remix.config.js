@@ -1,4 +1,6 @@
-/** @type {import('@remix-run/dev').AppConfig} */
+/**
+ * @type {import('@remix-run/dev').AppConfig}
+ */
 module.exports = {
   serverBuildTarget: 'vercel',
   serverDependenciesToBundle: ['marked'],
@@ -8,4 +10,8 @@ module.exports = {
   browserBuildDirectory: 'public/build',
   publicPath: '/build/',
   serverBuildDirectory: 'build',
+
+  future: {
+    unstable_postcss: true,
+  },
 }
