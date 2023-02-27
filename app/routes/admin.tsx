@@ -25,7 +25,7 @@ export default function AdminPage() {
                 className={({ isActive }) =>
                   'group-hover:text-accent-8 ' +
                   (isActive
-                    ? 'underline decoration-dotted underline-offset-4 text-accent-7'
+                    ? 'text-accent-7 underline decoration-dotted underline-offset-4'
                     : 'text-accent-5')
                 }
                 prefetch='intent'
@@ -48,7 +48,7 @@ export default function AdminPage() {
           </li>
         </ul>
       </aside>
-      <main className='flex-grow h-full'>
+      <main className='h-full flex-grow'>
         <Outlet />
       </main>
     </Page>

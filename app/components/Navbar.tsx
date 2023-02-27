@@ -10,11 +10,11 @@ export default function Navbar() {
   const hoverEffect = 'px-3 py-2 rounded-5 hover:bg-accent'
 
   return (
-    <nav className='mx-auto h-24 flex max-w-3xl items-center justify-between pt-12'>
-      <div className='flex gap-3 items-center'>
+    <nav className='mx-auto flex h-24 max-w-3xl items-center justify-between pt-12'>
+      <div className='flex items-center gap-3'>
         <Link to='/'>
           <img
-            className='border rounded border-accent-2 hover:shadow-xl p-1'
+            className='rounded border border-accent-2 p-1 hover:shadow-xl'
             src='/tomilabs.svg'
             alt='tomi'
           />

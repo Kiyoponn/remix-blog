@@ -100,7 +100,7 @@ export default function PostAdmin() {
   const isNewBlog = !data.blog
 
   return (
-    <Form className='flex w-[480px] ml-auto flex-col gap-3' method='post'>
+    <Form className='ml-auto flex w-[480px] flex-col gap-3' method='post'>
       <div>
         <Input
           label='Post Title'

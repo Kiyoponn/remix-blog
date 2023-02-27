@@ -16,7 +16,7 @@ export default function Admin() {
         Select a blog on left to edit or{' '}
         <Link
           to='new'
-          className='underline decoration-dotted hover:text-black hover:bg-white underline-offset-4'
+          className='underline decoration-dotted underline-offset-4 hover:bg-white hover:text-black'
         >
           create
         </Link>{' '}

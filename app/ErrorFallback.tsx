@@ -7,9 +7,9 @@ export function ErrorFallback({
 }) {
   return (
     <div className='relative'>
-      <div className='border-error h-20 rounded-5 text-error absolute inset-0 flex justify-center pt-4'>
-        <div className='text-error text-center'>
-          <div className='text-lg text-error gap-1 font-bold flex justify-center'>
+      <div className='absolute inset-0 flex h-20 justify-center rounded-5 border-error pt-4 text-error'>
+        <div className='text-center text-error'>
+          <div className='flex justify-center gap-1 text-lg font-bold text-error'>
             <ErrorIcon /> Error
           </div>
           <div className='px-2 text-base'>{children}</div>
