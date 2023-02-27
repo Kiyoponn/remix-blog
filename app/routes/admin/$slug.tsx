@@ -1,7 +1,7 @@
 import { Button } from '@/components/Button'
 import Input from '@/components/Input'
 import TextArea from '@/components/TextArea'
-import { ErrorFallback } from '@/ErrorFallback'
+import { ErrorFallback } from '@/components/ErrorFallback'
 import type { LoaderArgs } from '@remix-run/node'
 import { json, redirect } from '@remix-run/node'
 import {

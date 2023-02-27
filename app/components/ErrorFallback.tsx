@@ -1,4 +1,4 @@
-import { ErrorIcon } from './components/Icons'
+import { ErrorIcon } from './Icons'
 
 export function ErrorFallback({
   children = 'There was a problem. Sorry.',
