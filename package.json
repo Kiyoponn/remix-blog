@@ -1,6 +1,13 @@
 {
   "private": true,
   "sideEffects": false,
+  "prettier": {
+    "semi": false,
+    "singleQuote": true,
+    "jsxSingleQuote": true,
+    "tabWidth": 2,
+    "trailingComma": "es5"
+  },
   "scripts": {
     "build": "run-s build:*",
     "build:css": "pnpm generate:css -- --minify",
