@@ -1,4 +1,4 @@
-import clsx from 'clsx'
+import { cn } from '@/utils'
 import React from 'react'
 import { ErrorIcon } from './Icons'
 
@@ -15,7 +15,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
         {label}
         <input
           ref={ref}
-          className={clsx(
+          className={cn(
             'w-full rounded-5 border border-accent-2 bg-black px-3 text-white outline-none',
             'placeholder:text-accent-2',
             'transition-colors duration-150 ease-in-out',

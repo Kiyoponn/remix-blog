@@ -20,8 +20,8 @@ import {
   deleteBlog,
   getBlog,
   updateBlog,
-} from '~/models/blog.server'
-import { requireAdminUser } from '~/session.server'
+} from '@/models/blog.server'
+import { requireAdminUser } from '@/session.server'
 
 export async function loader({ request, params }: LoaderArgs) {
   await requireAdminUser(request)
@@ -153,7 +153,7 @@ export default function PostAdmin() {
               type='submit'
               name='intent'
               value='delete'
-              color='error'
+              shade='error'
               disabled={isDeleting}
             >
               {isDeleting ? 'deleting...' : 'delete'}

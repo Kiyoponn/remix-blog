@@ -1,4 +1,4 @@
-import clsx from 'clsx'
+import { cn } from '@/utils'
 
 interface PageProps
   extends React.PropsWithChildren<{
@@ -14,7 +14,7 @@ export default function Page({
   className,
 }: PageProps) {
   return (
-    <section className={clsx('mx-auto max-w-3xl', className)}>
+    <section className={cn('mx-auto max-w-3xl', className)}>
       {title ? (
         <h1 className='mt-12 mb-2 text-3xl font-extrabold'>{title}</h1>
       ) : null}

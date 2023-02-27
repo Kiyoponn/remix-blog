@@ -1,6 +1,7 @@
-import { Button } from '@/components/Button'
+import { buttonStyles } from '@/components/Button'
 import Page from '@/components/Page'
 import { getBlogListItems } from '@/models/blog.server'
+import { cn } from '@/utils'
 import { Link, NavLink, Outlet, useLoaderData } from '@remix-run/react'
 
 export const loader = async () => {
@@ -35,14 +36,15 @@ export default function AdminPage() {
             </li>
           ))}
           <li>
-            <Button
-              href='new'
-              variant='ghost'
-              color='secondary'
-              className='mt-6'
+            <Link
+              to='new'
+              className={cn(
+                buttonStyles({ variant: 'ghost', shade: 'secondary' }),
+                'mt-6'
+              )}
             >
               create new
-            </Button>
+            </Link>
           </li>
         </ul>
       </aside>

@@ -1,8 +1,7 @@
 import { Link, useLoaderData } from '@remix-run/react'
-import clsx from 'clsx'
 import Page from '@/components/Page'
 import { getBlogs } from '@/models/blog.server'
-import { formatDate } from '@/utils'
+import { cn, formatDate } from '@/utils'
 
 export const loader = async () => {
   const blogs = await getBlogs()
@@ -32,7 +31,7 @@ export default function Blogs() {
                   <Link className='group' prefetch='intent' to={blog.slug}>
                     <div className='flex justify-between'>
                       <h1
-                        className={clsx(
+                        className={cn(
                           'text-lg font-medium',
                           'after:block after:h-[1px] after:w-full after:scale-0 after:bg-white after:transition-transform after:duration-200 after:ease-in-out after:content-[""] group-hover:after:scale-100'
                         )}

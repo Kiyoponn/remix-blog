@@ -1,5 +1,7 @@
 import { useMatches } from '@remix-run/react'
 import { useMemo } from 'react'
+import clsx, { ClassValue } from 'clsx'
+import { twMerge } from 'tailwind-merge'
 
 import type { User } from '@/models/user.server'
 
@@ -89,4 +91,8 @@ export function formatDate(
     month: month,
     day: 'numeric',
   })
+}
+
+export function cn(...inputs: ClassValue[]) {
+  return twMerge(clsx(...inputs))
 }

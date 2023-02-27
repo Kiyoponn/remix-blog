@@ -1,16 +1,9 @@
-import { Link } from '@remix-run/react'
+import { cn } from '@/utils'
 import { cva, type VariantProps } from 'class-variance-authority'
-import clsx from 'clsx'
 
-export interface ButtonProps extends VariantProps<typeof buttonStyles> {
-  type?: 'button' | 'submit' | 'reset'
-  name?: string
-  value?: string
-  disabled?: boolean
-  children: React.ReactNode
-  href?: string
-  className?: string
-}
+interface ButtonProps
+  extends React.ButtonHTMLAttributes<HTMLButtonElement>,
+    VariantProps<typeof buttonStyles> {}
 
 const buttonStyles = cva(
   [
@@ -39,7 +32,7 @@ const buttonStyles = cva(
         ],
         ghost: '!bg-black hover:bg-accent',
       },
-      color: {
+      shade: {
         primary: 'bg-white text-black',
         secondary: [
           '!bg-black text-accent-5 border-accent-3',
@@ -56,39 +49,39 @@ const buttonStyles = cva(
       // default
       {
         variant: 'default',
-        color: 'error',
+        shade: 'error',
         class: 'hover:border-error hover:!text-error',
       },
       {
         variant: 'default',
-        color: 'alert',
+        shade: 'alert',
         class: 'hover:border-pink hover:!text-pink',
       },
       {
         variant: 'default',
-        color: 'warning',
+        shade: 'warning',
         class: 'hover:border-warning hover:!text-warning',
       },
       {
         variant: 'default',
-        color: 'violet',
+        shade: 'violet',
         class: 'hover:border-violet hover:!text-violet',
       },
 
       // ghost
       {
         variant: 'ghost',
-        color: 'primary',
+        shade: 'primary',
         class: [' !text-white', 'hover:!bg-accent'],
       },
       {
         variant: 'ghost',
-        color: 'secondary',
+        shade: 'secondary',
         class: ['!border-transparent ', 'hover:text-accent-5 hover:!bg-accent'],
       },
       {
         variant: 'ghost',
-        color: 'error',
+        shade: 'error',
         class: [
           '!text-error bg-gradient-to-r from-lighten to-lighten',
           'hover:!bg-error',
@@ -96,7 +89,7 @@ const buttonStyles = cva(
       },
       {
         variant: 'ghost',
-        color: 'warning',
+        shade: 'warning',
         class: [
           '!text-warning bg-gradient-to-r from-lighten to-lighten',
           'hover:!bg-warning',
@@ -104,7 +97,7 @@ const buttonStyles = cva(
       },
       {
         variant: 'ghost',
-        color: 'alert',
+        shade: 'alert',
         class: [
           '!text-pink bg-gradient-to-r from-lighten to-lighten',
           'hover:!bg-pink',
@@ -112,7 +105,7 @@ const buttonStyles = cva(
       },
       {
         variant: 'ghost',
-        color: 'violet',
+        shade: 'violet',
         class: [
           '!text-violet bg-gradient-to-r from-lighten to-lighten',
           'hover:!bg-violet',
@@ -124,44 +117,29 @@ const buttonStyles = cva(
       size: 'medium',
       width: 'fit',
       variant: 'default',
-      color: 'primary',
+      shade: 'primary',
     },
   }
 )
 
-export const Button = ({
-  children,
-  href,
+export const Button: React.FC<ButtonProps> = ({
+  className,
   size,
   width,
   variant,
-  color,
-  className,
+  shade,
   ...props
-}: ButtonProps) => {
+}) => {
   return (
-    <>
-      {href ? (
-        <Link to={href} className='w-fit'>
-          <button
-            type='button'
-            className={clsx(buttonStyles({ size, variant, color }), className)}
-          >
-            {children}
-          </button>
-        </Link>
-      ) : (
-        <button
-          className={clsx(
-            buttonStyles({ size, width, variant, color }),
-            'disabled:bg-black disabled:text-accent-3 disabled:border-accent-2 disabled:cursor-not-allowed',
-            className
-          )}
-          {...props}
-        >
-          {children}
-        </button>
+    <button
+      className={cn(
+        buttonStyles({ size, width, variant, shade }),
+        'disabled:bg-black disabled:text-accent-3 disabled:border-accent-2 disabled:cursor-not-allowed',
+        className
       )}
-    </>
+      {...props}
+    />
   )
 }
+
+export { Button as default, buttonStyles }

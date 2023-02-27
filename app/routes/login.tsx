@@ -3,9 +3,8 @@ import { json, redirect } from '@remix-run/node'
 import { Form, useActionData, useSearchParams } from '@remix-run/react'
 
 import { createUserSession, getUserId } from '@/session.server'
-import { safeRedirect, validateEmail } from '@/utils'
+import { cn, safeRedirect, validateEmail } from '@/utils'
 
-import clsx from 'clsx'
 import * as React from 'react'
 import { Button } from '@/components/Button'
 import Input from '@/components/Input'
@@ -132,7 +131,7 @@ export default function LoginPage() {
             id='remember'
             name='remember'
             type='checkbox'
-            className={clsx(
+            className={cn(
               'cursor-pointer text-transparent transition-all duration-150 ease-in-out',
               'rounded-5 border-accent-5 bg-black outline-none',
               'hover:border-white hover:checked:border-white',

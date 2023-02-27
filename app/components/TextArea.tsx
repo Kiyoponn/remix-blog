@@ -1,7 +1,6 @@
-import clsx from 'clsx'
+import { cn } from '@/utils'
 import { ErrorIcon } from './Icons'
 
-// interface TextAreaProps extends react textarea element
 interface TextAreaProps
   extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {
   label: string
@@ -19,7 +18,7 @@ export default function TextArea({
     <label className='block text-accent-5'>
       {label}
       <textarea
-        className={clsx(
+        className={cn(
           'w-full rounded-5 border border-accent-2 bg-black px-3 text-white outline-none',
           'placeholder:text-accent-2',
           'transition-colors duration-150 ease-in-out',
