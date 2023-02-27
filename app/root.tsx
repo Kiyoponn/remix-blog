@@ -13,7 +13,7 @@ import Navbar from './components/Navbar'
 
 import { getEnv } from './env.server'
 import { getUser } from './session.server'
-import styles from './styles/tailwind.css'
+import styles from '@/styles/tailwind.css'
 
 export const links: LinksFunction = () => {
   return [

@@ -12,6 +12,7 @@ module.exports = {
   serverBuildDirectory: 'build',
 
   future: {
+    unstable_tailwind: true,
     unstable_postcss: true,
   },
 }

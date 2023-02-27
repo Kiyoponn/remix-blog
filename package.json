@@ -11,13 +11,9 @@
     "trailingComma": "es5"
   },
   "scripts": {
-    "dev": "run-p dev:*",
-    "dev:css": "pnpm css:postcss -- --watch",
-    "dev:remix": "remix dev",
-    "css:postcss": "postcss styles --base styles --dir app/styles",
+    "dev": "remix dev",
 
     "build": "remix build",
-    "build:css": "pnpm css:postcss -- --env production",    
     "start": "remix-serve build",
 
     "validate": "run-p lint typecheck",

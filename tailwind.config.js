@@ -1,8 +1,6 @@
-const path = require('path')
-const fromRoot = (p) => path.join(__dirname, p)
-
+/** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: [fromRoot('./app/**/*.+(ts|tsx)')],
+  content: ['./app/**/*.{ts,tsx,jsx,js}'],
   theme: {
     extend: {
       borderRadius: {
