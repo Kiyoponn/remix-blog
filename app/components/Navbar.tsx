@@ -10,7 +10,7 @@ export default function Navbar() {
   const hoverEffect = 'px-3 py-2 rounded-5 hover:bg-accent'
 
   return (
-    <nav className='mx-auto flex h-24 max-w-3xl items-center justify-between pt-12'>
+    <nav className='mx-4 flex h-24 items-center justify-between pt-12 md:mx-auto md:max-w-3xl'>
       <div className='flex items-center gap-3'>
         <Link to='/'>
           <img

@@ -1,7 +1,7 @@
 import { Link, useLoaderData } from '@remix-run/react'
 import Page from '@/components/Page'
 import { getBlogs } from '@/models/blog.server'
-import { cn, formatDate } from '@/utils'
+import { formatDate } from '@/utils'
 
 export const loader = async () => {
   const blogs = await getBlogs()
@@ -29,16 +29,11 @@ export default function Blogs() {
               return (
                 <li key={blog.slug}>
                   <Link className='group' prefetch='intent' to={blog.slug}>
-                    <div className='flex justify-between'>
-                      <h1
-                        className={cn(
-                          'text-lg font-medium',
-                          'after:block after:h-[1px] after:w-full after:scale-0 after:bg-white after:transition-transform after:duration-200 after:ease-in-out after:content-[""] group-hover:after:scale-100'
-                        )}
-                      >
+                    <div className='flex flex-col justify-between'>
+                      <h1 className='text-lg font-medium decoration-dotted underline-offset-4 group-hover:underline'>
                         {blog.title}
                       </h1>
-                      <p className='text-base text-accent-5'>{date}</p>
+                      <p className='mt-2 text-base text-accent-5'>{date}</p>
                     </div>
                     <p className='mt-2 text-accent-6 group-hover:text-accent-6'>
                       {blog.subtitle}

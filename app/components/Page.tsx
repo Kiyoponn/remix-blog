@@ -14,7 +14,7 @@ export default function Page({
   className,
 }: PageProps) {
   return (
-    <section className={cn('mx-auto max-w-3xl', className)}>
+    <section className={cn('mx-4 md:mx-auto md:max-w-3xl', className)}>
       {title ? (
         <h1 className='mt-12 mb-2 text-3xl font-extrabold'>{title}</h1>
       ) : null}

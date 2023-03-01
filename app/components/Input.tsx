@@ -5,7 +5,6 @@ import { ErrorIcon } from './Icons'
 interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   label: string
   error?: string | null
-  className?: string
 }
 
 const Input = React.forwardRef<HTMLInputElement, InputProps>(
