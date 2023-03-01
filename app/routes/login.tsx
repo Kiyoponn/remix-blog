@@ -5,11 +5,11 @@ import { Form, useActionData, useSearchParams } from '@remix-run/react'
 import { createUserSession, getUserId } from '@/session.server'
 import { cn, safeRedirect, validateEmail } from '@/utils'
 
-import * as React from 'react'
+import React from 'react'
 import { Button } from '@/components/Button'
 import Input from '@/components/Input'
-import Page from '@/components/Page'
 import { verifyLogin } from '@/models/user.server'
+import Layout from '@/components/Layout'
 
 export async function loader({ request }: LoaderArgs) {
   const userId = await getUserId(request)
@@ -93,62 +93,66 @@ export default function LoginPage() {
   }, [emailError, passwordError])
 
   return (
-    <Page className='flex h-3/4 items-center justify-center'>
-      <Form method='post' className='flex w-80 flex-col gap-4'>
-        <div>
-          <Input
-            ref={emailRef}
-            id='email'
-            name='email'
-            type='email'
-            label='Email'
-            error={emailError}
-            required
-            autoComplete='email'
-            aria-invalid={emailError ? true : undefined}
-            aria-describedby='email-error'
-            placeholder='you@example.com'
-          />
-        </div>
-        <div>
-          <Input
-            ref={passwordRef}
-            id='password'
-            name='password'
-            type='password'
-            label='Password'
-            error={passwordError}
-            required
-            autoComplete='password'
-            aria-invalid={passwordError ? true : undefined}
-            aria-describedby='password-error'
-            placeholder='********'
-          />
-        </div>
+    <Layout>
+      <Form method='post'>
+        <fieldset className='mt-6 flex max-w-xl flex-col gap-4'>
+          <legend className='text-3xl font-extrabold'>Login</legend>
+          <p className='text-accent-5'>Enter your credentials to login</p>
+          <div>
+            <Input
+              ref={emailRef}
+              id='email'
+              name='email'
+              type='email'
+              label='Email'
+              error={emailError}
+              required
+              autoComplete='email'
+              aria-invalid={emailError ? true : undefined}
+              aria-describedby='email-error'
+              placeholder='you@example.com'
+            />
+          </div>
+          <div>
+            <Input
+              ref={passwordRef}
+              id='password'
+              name='password'
+              type='password'
+              label='Password'
+              error={passwordError}
+              required
+              autoComplete='password'
+              aria-invalid={passwordError ? true : undefined}
+              aria-describedby='password-error'
+              placeholder='********'
+            />
+          </div>
 
-        <div className='flex items-center'>
-          <input
-            id='remember'
-            name='remember'
-            type='checkbox'
-            className={cn(
-              'cursor-pointer text-transparent transition-all duration-150 ease-in-out',
-              'rounded-5 border-accent-5 bg-black outline-none',
-              'hover:border-white hover:checked:border-white',
-              'focus:outline-none focus:ring focus:ring-accent-3 focus:ring-opacity-50 focus:ring-offset-0 focus:checked:border-accent-5 focus:hover:border-white',
-              'checked:border-accent-5 checked:text-transparent '
-            )}
-          />
-          <label htmlFor='remember' className='ml-2 block text-sm text-white'>
-            Remember me
-          </label>
-        </div>
+          <div className='flex items-center'>
+            <input
+              id='remember'
+              name='remember'
+              type='checkbox'
+              className={cn(
+                'cursor-pointer text-transparent transition-all duration-150 ease-in-out',
+                'rounded-5 border-accent-5 bg-black outline-none',
+                'hover:border-white hover:checked:border-white',
+                'focus:outline-none focus:ring focus:ring-accent-3 focus:ring-opacity-50 focus:ring-offset-0 focus:checked:border-accent-5 focus:hover:border-white',
+                'checked:border-accent-5 checked:text-transparent '
+              )}
+            />
+            <label htmlFor='remember' className='ml-2 block text-sm text-white'>
+              Remember me
+            </label>
+          </div>
 
-        <input type='hidden' name='redirectTo' value={redirectTo} />
-        <Button size='large' width='full'>
-          Login
-        </Button>
+          <input type='hidden' name='redirectTo' value={redirectTo} />
+          <Button size='large' width='full'>
+            Login
+          </Button>
+        </fieldset>
       </Form>
-    </Page>
+    </Layout>
   )
 }

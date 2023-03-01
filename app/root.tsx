@@ -29,7 +29,7 @@ export const links: LinksFunction = () => {
     { rel: 'stylesheet', href: styles },
     {
       rel: 'stylesheet',
-      href: 'https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/night-owl.min.css',
+      href: 'https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/tokyo-night-dark.min.css',
     },
   ]
 }
@@ -60,7 +60,7 @@ export default function App() {
         <Meta />
         <Links />
       </head>
-      <body>
+      <body className='h-[100dvh]'>
         <Navbar />
         <Outlet />
         <ScrollRestoration />

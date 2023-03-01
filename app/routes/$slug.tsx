@@ -4,9 +4,10 @@ import { useLoaderData } from '@remix-run/react'
 import { marked } from 'marked'
 import readingTime from 'reading-time'
 import invariant from 'tiny-invariant'
-import Page from '@/components/Page'
+import Page from '@/components/Layout'
 import { getBlog } from '@/models/blog.server'
 import { formatDate } from '@/utils'
+import Layout from '@/components/Layout'
 
 export const loader = async ({ params }: LoaderArgs) => {
   invariant(params.slug, `params.slug is required`)
@@ -48,7 +49,8 @@ export default function Blog() {
   const { blog, html } = useLoaderData<typeof loader>()
 
   return (
-    <Page title={blog.title}>
+    <Layout>
+      <h1 className='mt-8 mb-2 text-3xl font-extrabold'>{blog.title}</h1>
       <p className='mt-4 flex justify-between text-base text-accent-6'>
         <span>
           Raju Khattri /{' '}
@@ -64,6 +66,6 @@ export default function Blog() {
           dangerouslySetInnerHTML={{ __html: html }}
         />
       </div>
-    </Page>
+    </Layout>
   )
 }

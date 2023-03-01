@@ -1,5 +1,5 @@
 import { buttonStyles } from '@/components/Button'
-import Page from '@/components/Page'
+import Layout from '@/components/Layout'
 import { getBlogListItems } from '@/models/blog.server'
 import { cn } from '@/utils'
 import { Link, NavLink, Outlet, useLoaderData } from '@remix-run/react'
@@ -13,7 +13,7 @@ export default function AdminPage() {
   const { blogs } = useLoaderData<typeof loader>()
 
   return (
-    <Page className='mt-12 flex items-start justify-between'>
+    <Layout className='mt-12 flex items-start justify-between'>
       <aside className='w-32'>
         <Link to={'/admin'}>
           <h1 className='font-bold'>All Blogs List</h1>
@@ -51,6 +51,6 @@ export default function AdminPage() {
       <main className='h-full flex-grow'>
         <Outlet />
       </main>
-    </Page>
+    </Layout>
   )
 }

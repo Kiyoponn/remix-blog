@@ -6,6 +6,9 @@ module.exports = {
       borderRadius: {
         5: '0.3125rem',
       },
+      screens: {
+        xs: '560px',
+      },
     },
     fontFamily: {
       'space-grotesk': ['Space Grotesk', 'sans-serif'],
