@@ -6,7 +6,7 @@ interface PageProps extends React.PropsWithChildren {
 
 export default function Layout({ children, className }: PageProps) {
   return (
-    <section className={cn('mx-4 xs:mx-6 md:mx-auto md:max-w-3xl', className)}>
+    <section className={cn('mx-6 md:mx-auto md:max-w-3xl', className)}>
       {children}
     </section>
   )

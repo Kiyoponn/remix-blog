@@ -93,12 +93,16 @@ export default function LoginPage() {
   }, [emailError, passwordError])
 
   return (
-    <Layout>
+    <Layout className='mx-0 2xs:mx-6'>
       <Form method='post'>
-        <fieldset className='mt-6 flex max-w-xl flex-col gap-4'>
+        <fieldset
+          className={cn(
+            'mt-8 flex max-w-xl flex-col gap-4 rounded-5 border-0 border-accent-2 px-6 pb-8', '2xs:border 2xs:px-8'
+          )}
+        >
           <legend className='text-3xl font-extrabold'>Login</legend>
-          <p className='text-accent-5'>Enter your credentials to login</p>
-          <div>
+          {/* <p className='mt-2 text-accent-5'>Enter your credentials to login</p> */}
+          <div className='mt-4'>
             <Input
               ref={emailRef}
               id='email'
@@ -129,7 +133,7 @@ export default function LoginPage() {
             />
           </div>
 
-          <div className='flex items-center'>
+          <div className='group flex w-max items-center'>
             <input
               id='remember'
               name='remember'
@@ -142,7 +146,10 @@ export default function LoginPage() {
                 'checked:border-accent-5 checked:text-transparent '
               )}
             />
-            <label htmlFor='remember' className='ml-2 block text-sm text-white'>
+            <label
+              htmlFor='remember'
+              className='ml-2 block text-sm text-white group-hover:cursor-pointer'
+            >
               Remember me
             </label>
           </div>

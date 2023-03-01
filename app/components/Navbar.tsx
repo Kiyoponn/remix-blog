@@ -7,11 +7,11 @@ export default function Navbar() {
   const adminUser = useOptionalAdminUser()
   const user = useOptionalUser()
 
-  const hoverEffect = 'px-3 py-2 rounded-5 hover:bg-accent'
+  const hoverClass = 'px-3 py-2 rounded-5 hover:bg-accent'
 
   return (
-    <header>
-      <nav className='mx-4 flex h-24 items-center justify-between pt-12 xs:mx-6 md:mx-auto md:max-w-3xl'>
+    <header className='mx-6 h-24 pt-12 md:mx-auto md:max-w-3xl'>
+      <nav className='flex items-center justify-between'>
         <div className='flex items-center gap-3'>
           <Link to='/'>
             <img
@@ -23,7 +23,7 @@ export default function Navbar() {
           {adminUser ? (
             <NavLink
               className={({ isActive }) =>
-                cn({ 'font-semibold underline': isActive }, hoverEffect)
+                cn({ 'font-semibold underline': isActive }, hoverClass)
               }
               to='/admin'
             >
