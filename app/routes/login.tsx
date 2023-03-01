@@ -97,7 +97,8 @@ export default function LoginPage() {
       <Form method='post'>
         <fieldset
           className={cn(
-            'mt-8 flex max-w-xl flex-col gap-4 rounded-5 border-0 border-accent-2 px-6 pb-8', '2xs:border 2xs:px-8'
+            'mt-8 flex max-w-xl flex-col gap-4 rounded-5 border-0 border-accent-2 px-6 pb-8',
+            '2xs:border 2xs:px-8'
           )}
         >
           <legend className='text-3xl font-extrabold'>Login</legend>

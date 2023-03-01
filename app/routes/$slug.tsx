@@ -4,13 +4,12 @@ import { useLoaderData } from '@remix-run/react'
 import { marked } from 'marked'
 import readingTime from 'reading-time'
 import invariant from 'tiny-invariant'
-import Page from '@/components/Layout'
 import { getBlog } from '@/models/blog.server'
 import { formatDate } from '@/utils'
 import Layout from '@/components/Layout'
 
 export const loader = async ({ params }: LoaderArgs) => {
-  invariant(params.slug, `params.slug is required`)
+  invariant(params.slug, 'slug is required')
 
   const blog = await getBlog(params.slug)
 
