@@ -54,7 +54,7 @@ export default function App() {
   return (
     <html
       lang='en'
-      className='h-screen bg-black font-space-grotesk text-white selection:bg-purple selection:text-white'
+      className='bg-black font-space-grotesk text-white selection:bg-purple selection:text-white'
     >
       <head>
         <Meta />
