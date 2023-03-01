@@ -10,12 +10,12 @@ export default function Navbar() {
   const hoverClass = 'px-3 py-2 rounded-5 hover:bg-accent'
 
   return (
-    <header className='mx-6 h-24 pt-12 md:mx-auto md:max-w-3xl'>
+    <header className='mx-4 h-24 pt-12 xs:mx-6 md:mx-auto md:max-w-3xl'>
       <nav className='flex items-center justify-between'>
         <div className='flex items-center gap-3'>
           <Link to='/'>
             <img
-              className='rounded border border-accent-2 p-1 hover:shadow-2xl hover:shadow-pink'
+              className='rounded border border-accent-2 p-1'
               src='/tomistudio.svg'
               alt='tomistudio'
             />

@@ -30,10 +30,10 @@ export default function Blogs() {
               return (
                 <li key={blog.slug}>
                   <Link className='group' prefetch='intent' to={blog.slug}>
-                    <div className='flex flex-col-reverse xs:flex-row xs:justify-between'>
+                    <div className='flex flex-col-reverse xs:flex-row xs:items-center xs:justify-between'>
                       <h2
                         className={cn(
-                          'text-lg font-medium transition-all duration-300 ease-in-out xs:max-w-lg',
+                          'max-w-sm text-lg font-medium transition-all duration-300 ease-in-out sm:max-w-none',
                           'group-hover:text-magenta group-hover:underline group-hover:decoration-dotted group-hover:underline-offset-4'
                         )}
                       >

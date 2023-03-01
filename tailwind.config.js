@@ -7,8 +7,7 @@ module.exports = {
         5: '0.3125rem',
       },
       screens: {
-        '2xs': '420px',
-        xs: '560px',
+        xs: '420px',
       },
     },
     fontFamily: {

@@ -93,16 +93,16 @@ export default function LoginPage() {
   }, [emailError, passwordError])
 
   return (
-    <Layout className='mx-0 2xs:mx-6'>
-      <Form method='post'>
+    <Layout>
+      <Form method='post' className='mt-8'>
         <fieldset
           className={cn(
-            'mt-8 flex max-w-xl flex-col gap-4 rounded-5 border-0 border-accent-2 px-6 pb-8',
-            '2xs:border 2xs:px-8'
+            'flex max-w-xl flex-col gap-4 rounded-5 border-0 border-accent-2 pb-8',
+            'xs:border xs:px-6'
           )}
         >
           <legend className='text-3xl font-extrabold'>Login</legend>
-          {/* <p className='mt-2 text-accent-5'>Enter your credentials to login</p> */}
+          <p className='mt-2 text-accent-5/80'>Enter your credentials to login</p>
           <div className='mt-4'>
             <Input
               ref={emailRef}
