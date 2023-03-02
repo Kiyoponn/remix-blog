@@ -20,7 +20,7 @@ const BlogList: React.FC<Aside> = ({ blogs, isOpen, className, ...props }) => {
       id='aside'
       className={cn(
         'z-10 -translate-x-[150%] transition-transform ease-in-out',
-        'fixed left-0 top-32 max-h-min min-h-[620px] min-w-[280px] max-w-[320px] overflow-auto rounded-5 bg-black/50 py-8 px-6 backdrop-blur-md',
+        'fixed left-0 top-32 max-h-min min-h-[620px] min-w-[280px] max-w-[320px] overflow-auto rounded-5 bg-black/40 py-8 px-6 backdrop-blur-md',
         'sm:static sm:inset-0 sm:max-h-none sm:min-h-0 sm:w-[148px] sm:min-w-0 sm:translate-x-0 sm:overflow-visible sm:rounded-none sm:bg-black sm:py-0 sm:px-0 sm:opacity-100 sm:shadow-none sm:transition-none',
         isOpen ? 'translate-x-0 opacity-100' : '-translate-x-[150%] opacity-0'
       )}
@@ -49,6 +49,7 @@ const BlogList: React.FC<Aside> = ({ blogs, isOpen, className, ...props }) => {
             buttonStyles({
               variant: 'ghost',
               width: 'full',
+              size: 'medium',
               shade: 'secondary',
             }),
             'mt-6'

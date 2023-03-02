@@ -1,7 +1,6 @@
 import BlogList from '@/components/BlogList'
 import Layout from '@/components/Layout'
 import { getBlogListItems } from '@/models/blog.server'
-import { cn } from '@/utils'
 import { Outlet, useLoaderData } from '@remix-run/react'
 import React, { useEffect } from 'react'
 
@@ -50,12 +49,16 @@ export default function AdminPage() {
       <button
         id='floating-button'
         onClick={handleToggle}
-        className='z-20 block rounded-5 text-sm text-white sm:hidden'
+        className='z-20 block text-sm text-white sm:hidden'
       >
         {isOpen ? (
-          <span className='ml-2 font-light py-1 px-3 bg-error rounded-5 text-md xs:ml-0'>X</span>
+          <span className='ml-2 rounded-sm bg-error py-1 px-3 text-base font-light xs:ml-0'>
+            X
+          </span>
         ) : (
-          <span className='text-md font-bold py-2 px-3 rounded-5 bg-accent-2'>Blogs List</span>
+          <span className='rounded-sm bg-accent-2 py-2 px-3 text-base font-light'>
+            &lt; Blogs List
+          </span>
         )}
       </button>
       <BlogList blogs={blogs} isOpen={isOpen} />
