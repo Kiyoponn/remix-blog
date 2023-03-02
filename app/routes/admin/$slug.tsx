@@ -25,18 +25,19 @@ import { requireAdminUser } from '@/session.server'
 
 export async function loader({ request, params }: LoaderArgs) {
   await requireAdminUser(request)
+  const { slug } = params
 
-  invariant(params.slug, 'slug not found')
-  if (params.slug === 'new') {
-    return json({ blog: null })
+  invariant(slug, 'slug not found')
+  if (slug === 'new') {
+    return json({ blog: null, slug })
   }
 
-  const blog = await getBlog(params.slug)
+  const blog = await getBlog(slug)
   if (!blog) {
     throw new Response('not found', { status: 404 })
   }
 
-  return json({ blog })
+  return json({ blog, slug })
 }
 
 export async function action({ request, params }: LoaderArgs) {
@@ -59,7 +60,12 @@ export async function action({ request, params }: LoaderArgs) {
   const errors = {
     title: title ? null : 'Title is required',
     subtitle: subtitle ? null : 'Subtitle is required',
-    slug: slug ? null : 'Slug is required',
+    slug:
+      slug === 'new'
+        ? 'Slug cannot be "new"'
+        : null || slug
+        ? null
+        : 'Slug is required',
     markdown: markdown ? null : 'Markdown is required',
   }
   const hasErrors = Object.values(errors).some((errorMessage) => errorMessage)
@@ -100,7 +106,10 @@ export default function PostAdmin() {
   const isNewBlog = !data.blog
 
   return (
-    <Form className='ml-auto flex w-[480px] flex-col gap-3' method='post'>
+    <Form
+      className=' flex w-full flex-col gap-3 sm:mx-0 sm:ml-auto sm:w-[480px]'
+      method='post'
+    >
       <div>
         <Input
           label='Post Title'

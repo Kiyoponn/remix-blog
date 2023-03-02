@@ -2,7 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
-.prose code, .prose pre {
+.prose code,
+.prose pre {
   @apply font-roboto-mono
 }
 
@@ -24,4 +25,8 @@
 
 span.hljs-comment {
   @apply text-accent-4 italic !important
+}
+
+.text-sideways {
+  text-orientation: sideways;
 }

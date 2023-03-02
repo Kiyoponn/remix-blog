@@ -10,18 +10,20 @@ export async function loader({ request }: LoaderArgs) {
 
 export default function Admin() {
   return (
-    <p className='text-center text-accent-5'>
-      Nothing to see here :(
-      <em className='block'>
-        Select a blog on left to edit or{' '}
-        <Link
-          to='new'
-          className='underline decoration-dotted underline-offset-4 hover:bg-white hover:text-black'
-        >
-          create
-        </Link>{' '}
-        a new one.
-      </em>
-    </p>
+    <main className='h-full mt-6 mx-auto flex-grow'>
+      <p className='text-center text-accent-5'>
+        Nothing to see here :(
+        <em className='block'>
+          Select a blog to edit or{' '}
+          <Link
+            to='new'
+            className='underline decoration-dotted underline-offset-4 hover:bg-white hover:text-black'
+          >
+            create
+          </Link>{' '}
+          a new one.
+        </em>
+      </p>
+    </main>
   )
 }

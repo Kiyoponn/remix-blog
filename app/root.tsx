@@ -60,7 +60,7 @@ export default function App() {
         <Meta />
         <Links />
       </head>
-      <body className='h-[100dvh]'>
+      <body>
         <Navbar />
         <Outlet />
         <ScrollRestoration />
