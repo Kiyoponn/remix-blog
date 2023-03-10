@@ -33,7 +33,7 @@ export default function Navbar() {
         </div>
         {user ? (
           <Form action='/logout' method='post'>
-            <Button type='submit' variant='ghost' shade='error'>
+            <Button type='submit' intent='ghost' shades='error'>
               Logout
             </Button>
           </Form>

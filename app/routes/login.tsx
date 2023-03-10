@@ -156,7 +156,7 @@ export default function LoginPage() {
           </div>
 
           <input type='hidden' name='redirectTo' value={redirectTo} />
-          <Button size='large' width='full'>
+          <Button size='lg' width='full'>
             Login
           </Button>
         </fieldset>

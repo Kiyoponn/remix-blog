@@ -84,6 +84,7 @@ export async function action({ request, params }: LoaderArgs) {
     await createBlog({ title, subtitle, slug, markdown })
   } else {
     await updateBlog({ title, subtitle, slug, markdown }, params.slug)
+    return redirect(`/admin/${slug}`)
   }
 
   return redirect(`/admin`)
@@ -162,7 +163,7 @@ export default function PostAdmin() {
               type='submit'
               name='intent'
               value='delete'
-              shade='error'
+              shades='error'
               disabled={isDeleting || isUpdating}
             >
               {isDeleting ? 'deleting...' : 'delete'}

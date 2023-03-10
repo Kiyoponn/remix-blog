@@ -47,10 +47,10 @@ const BlogList: React.FC<Aside> = ({ blogs, isOpen, className, ...props }) => {
           to='new'
           className={cn(
             buttonStyles({
-              variant: 'ghost',
+              intent: 'ghost',
               width: 'full',
-              size: 'medium',
-              shade: 'secondary',
+              size: 'md',
+              shades: 'secondary',
             }),
             'mt-6'
           )}
