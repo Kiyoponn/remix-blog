@@ -90,7 +90,7 @@ export async function action({ request, params }: LoaderArgs) {
   return redirect(`/admin`)
 }
 
-export default function PostAdmin() {
+export default function BlogAdmin() {
   const data = useLoaderData<typeof loader>()
   const errors = useActionData<typeof action>()
   const transition = useTransition()
@@ -113,7 +113,7 @@ export default function PostAdmin() {
     >
       <div>
         <Input
-          label='Post Title'
+          label='Blog Title'
           error={errors?.title}
           type='text'
           name='title'
@@ -124,7 +124,7 @@ export default function PostAdmin() {
       </div>
       <div>
         <Input
-          label='Post Subtitle'
+          label='Blog Subtitle'
           error={errors?.subtitle}
           type='text'
           name='subtitle'
@@ -135,7 +135,7 @@ export default function PostAdmin() {
       </div>
       <div>
         <Input
-          label='Post Slug'
+          label='Blog Slug'
           error={errors?.slug}
           type='text'
           name='slug'
@@ -146,7 +146,7 @@ export default function PostAdmin() {
       </div>
       <div>
         <TextArea
-          label='Post Markdown'
+          label='Blog Markdown'
           error={errors?.markdown}
           id='markdown'
           rows={8}
