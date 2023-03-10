@@ -26,7 +26,7 @@ const BlogList: React.FC<Aside> = ({ blogs, isOpen, className, ...props }) => {
       )}
       {...props}
     >
-      <h2 className='mt-6 sm:mt-0 hidden font-bold sm:block'>Blogs List</h2>
+      <h2 className='mt-6 hidden font-bold sm:mt-0 sm:block'>Blogs List</h2>
       <div className='mt-6 flex flex-col gap-4 sm:mt-4'>
         {blogs.map((blog) => (
           <NavLink

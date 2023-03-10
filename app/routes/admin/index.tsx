@@ -10,7 +10,7 @@ export async function loader({ request }: LoaderArgs) {
 
 export default function Admin() {
   return (
-    <main className='h-full mt-6 mx-auto flex-grow'>
+    <main className='mx-auto mt-6 h-full flex-grow'>
       <p className='text-center text-accent-5'>
         Nothing to see here :(
         <em className='block'>

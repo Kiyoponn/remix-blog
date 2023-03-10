@@ -102,7 +102,9 @@ export default function LoginPage() {
           )}
         >
           <legend className='text-3xl font-extrabold'>Login</legend>
-          <p className='mt-2 text-accent-5/80'>Enter your credentials to login</p>
+          <p className='mt-2 text-accent-5/80'>
+            Enter your credentials to login
+          </p>
           <div className='mt-4'>
             <Input
               ref={emailRef}
