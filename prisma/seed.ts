@@ -65,7 +65,7 @@ The first step is to give storage access to Termux. Open the Termux app and type
 termux-setup-storage
 \`\`\`
 
-After running the command, a prompt will appear. Click "Allow" to grant access.
+After running the command, a prompt will appear. Click "**Allow**" to grant access.
 You can also grant access to Termux from its app settings.
 
 ### Update and Upgrade
@@ -78,7 +78,7 @@ apt update && apt upgrade
 
 ## Styling Termux
 
-Firstly, open the Termux application and hold your finger on the screen for a few seconds. This will reveal a "MORE..." option. Click on it to access additional options, and then select "Style". You will be presented with two options: choose the color or font that you prefer.
+Firstly, open the Termux application and hold your finger on the screen for a few seconds. This will reveal a "**MORE...**" option. Click on it to access additional options, and then select "**Style**". You will be presented with two options: choose the color or font that you prefer.
 
 ### **Custom Styling**
 
