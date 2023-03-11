@@ -84,7 +84,7 @@ Firstly, open the Termux application and hold your finger on the screen for a fe
 
 Customize the color scheme:
 
-I'll be using *[catppuccin](https://github.com/catppuccin)* theme for Termux as it provides excellent support and features beautiful shades. To install it, please refer to catppuccin's installation guide [here](https://github.com/catppuccin/termux) or use the following command:
+I'll be using [catppuccin](https://github.com/catppuccin) theme for Termux as it provides excellent support and features beautiful shades. To install it, please refer to catppuccin's installation guide [here](https://github.com/catppuccin/termux) or use the following command:
 
 \`\`\`bash
 curl -o $HOME/.termux/colors.properties https://raw.githubusercontent.com/catppuccin/termux/main/Mocha/colors.properties
