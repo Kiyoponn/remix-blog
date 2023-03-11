@@ -4,27 +4,27 @@
 
 .prose code,
 .prose pre {
-  @apply font-roboto-mono
+  @apply font-roboto-mono;
 }
 
 .prose code:not(pre > code) {
-  @apply text-magenta font-normal mx-1 px-1 py-[0.125rem] border border-accent-3 rounded-md before:content-none after:content-none
+  @apply mx-1 rounded-md border border-accent-3 px-1 py-[0.125rem] font-normal text-magenta before:content-none after:content-none;
 }
 
 .prose pre {
-  @apply px-4 py-3 rounded-md bg-black border border-accent-3
+  @apply rounded-md border border-accent-3 bg-black px-4 py-3;
 }
 
 .prose a {
-  @apply font-normal decoration-dotted underline-offset-4
+  @apply font-normal decoration-dotted underline-offset-4;
 }
 
 .prose a:hover {
-  @apply bg-white text-black
+  @apply bg-white text-black;
 }
 
 span.hljs-comment {
-  @apply text-accent-4 italic !important
+  @apply italic text-accent-4 !important;
 }
 
 .text-sideways {
@@ -32,9 +32,9 @@ span.hljs-comment {
 }
 
 .prose blockquote > p::before {
-  @apply content-[none]
+  @apply content-[none];
 }
 
 .prose blockquote > p::after {
-  @apply content-[none]
+  @apply content-[none];
 }
