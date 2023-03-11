@@ -21,4 +21,25 @@ const ErrorIcon = ({ ...props }: IconProps) => (
   </svg>
 )
 
-export { ErrorIcon }
+const HamburgerIcon = ({ className, ...props }: IconProps) => {
+  return (
+    <svg
+      xmlns='http://www.w3.org/2000/svg'
+      data-testid='hamburger-icon'
+      fill='none'
+      stroke='currentColor'
+      strokeWidth='2'
+      viewBox='0 0 32 32'
+      height='32'
+      width='32'
+      className={className}
+      {...props}
+    >
+      <rect className='top' width={24} height={0.25} x={4} y={8} />
+      <rect className='center' width={24} height={0.25} x={4} y={16} />
+      <rect className='bottom' width={24} height={0.25} x={4} y={24} />
+    </svg>
+  )
+}
+
+export { ErrorIcon, HamburgerIcon }

@@ -1,7 +1,8 @@
 import BlogList from '@/components/BlogList'
+import { HamburgerIcon } from '@/components/Icons'
 import Layout from '@/components/Layout'
 import { getBlogListItems } from '@/models/blog.server'
-import { Outlet, useLoaderData } from '@remix-run/react'
+import { Outlet, useLoaderData, useLocation } from '@remix-run/react'
 import React, { useEffect } from 'react'
 
 export const loader = async () => {
@@ -12,11 +13,13 @@ export const loader = async () => {
 export default function AdminPage() {
   const [isOpen, setIsOpen] = React.useState(false)
   const data = useLoaderData<typeof loader>()
+  const location = useLocation()
 
   useEffect(() => {
     const handleOutsideClick = (e: MouseEvent) => {
       const aside = document.getElementById('aside')
       const button = document.getElementById('floating-button')
+
       if (
         aside &&
         button &&
@@ -34,6 +37,10 @@ export default function AdminPage() {
     }
   }, [])
 
+  useEffect(() => {
+    setIsOpen(false)
+  }, [location.pathname])
+
   const blogs = data.blogs.map((blog) => ({
     slug: blog.slug,
     title: blog.title,
@@ -45,22 +52,17 @@ export default function AdminPage() {
   }
 
   return (
-    <Layout className='mt-12 flex h-full flex-col items-start gap-6 sm:flex-row'>
-      <button
-        id='floating-button'
-        onClick={handleToggle}
-        className='z-20 block text-sm text-white sm:hidden'
-      >
-        {isOpen ? (
-          <span className='ml-2 rounded-sm bg-error py-1 px-3 text-base font-light xs:ml-0'>
-            X
-          </span>
-        ) : (
-          <span className='rounded-sm bg-accent-2 py-2 px-3 text-base font-light'>
-            &lt; Blogs List
-          </span>
-        )}
-      </button>
+    <Layout className='mt-6 flex h-full flex-col items-start gap-6 sm:flex-row'>
+      <div className='z-20 block sm:hidden'>
+        <button
+          id='floating-button'
+          onClick={handleToggle}
+          aria-expanded={isOpen}
+          className='flex items-center justify-center rounded-full duration-150 ease-in-out'
+        >
+          <HamburgerIcon className='stroke-white' />
+        </button>
+      </div>
       <BlogList blogs={blogs} isOpen={isOpen} />
       <Outlet />
     </Layout>

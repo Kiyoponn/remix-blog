@@ -24,11 +24,7 @@
 }
 
 span.hljs-comment {
-  @apply italic text-accent-4 !important;
-}
-
-.text-sideways {
-  text-orientation: sideways;
+  @apply italic !important;
 }
 
 .prose blockquote > p::before {
@@ -37,4 +33,28 @@ span.hljs-comment {
 
 .prose blockquote > p::after {
   @apply content-[none];
+}
+
+svg > rect {
+  @apply origin-center transition-all duration-500 ease-snappy;
+}
+
+button[aria-expanded='true'] rect {
+  @apply transition-all duration-500 ease-snappy;
+}
+
+button[aria-expanded='true'] rect.top {
+  @apply rotate-45;
+}
+
+button[aria-expanded='true'] rect:is(.top, .bottom) {
+  y: 16;
+}
+
+button[aria-expanded='true'] rect.center {
+  @apply opacity-0;
+}
+
+button[aria-expanded='true'] rect.bottom {
+  @apply -rotate-45;
 }

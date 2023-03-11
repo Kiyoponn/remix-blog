@@ -9,6 +9,9 @@ module.exports = {
       screens: {
         xs: '420px',
       },
+      transitionTimingFunction: {
+        snappy: 'cubic-bezier(0.84, 0.06, 0.52, 1.8)',
+      },
     },
     fontFamily: {
       'space-grotesk': ['Space Grotesk', 'sans-serif'],

@@ -114,11 +114,12 @@ export const Button: React.FC<ButtonProps> = ({
   size,
   width,
   shades,
+  className,
   ...props
 }) => {
   return (
     <button
-      className={cn(buttonStyles({ intent, shades, size, width }))}
+      className={cn(buttonStyles({ intent, shades, size, width }), className)}
       {...props}
     />
   )
