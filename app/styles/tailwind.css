@@ -30,3 +30,11 @@ span.hljs-comment {
 .text-sideways {
   text-orientation: sideways;
 }
+
+.prose blockquote > p::before {
+  @apply content-[none]
+}
+
+.prose blockquote > p::after {
+  @apply content-[none]
+}
