@@ -198,10 +198,10 @@ create an index file which can house our function. In the root folder of this
 project run the following commands:
 
 \`\`\`sh
-mkdir -p functions/likes && \`# Create a new directory called functions/likes\` \
-cd functions/likes &&     \`# Move into the new directory\` \
-touch index.js &&         \`# Create a new file called index.js\` \
-npm init -y               \`# Create a basic package.json file without any configuration\`
+mkdir -p functions/likes && # Create a new directory called functions/likes \\
+cd functions/likes &&       # Move into the new directory \\
+touch index.js &&           # Create a new file called index.js \\
+npm init -y                 # Create a basic package.json file without any configuration \\
 \`\`\`
 
 Next, you'll need to install some of the project's dependencies. For this cloud
@@ -263,16 +263,16 @@ const db = admin.firestore()
 const likes = db.collection('likes')
 
 app.get('/:id', (req, res) =>
-likes
-.doc(req.params.id)
-.get()
-.then((doc) => {
-if (!doc.exists) {
-res.status(200).json({count: 0})
-} else {
-res.status(200).send(doc.data())
-}
-}),
+  likes
+    .doc(req.params.id)
+    .get()
+    .then((doc) => {
+      if (!doc.exists) {
+        res.status(200).json({count: 0})
+      } else {
+        res.status(200).send(doc.data())
+      }
+    }),
 )
 \`\`\`
 
@@ -295,12 +295,12 @@ increment the value.
 \`\`\`js
 // DON”T DO THIS
 likes
-.doc(req.params.id)
-.get()
-.then((doc) => {
-const count = doc.exists ? doc.data().count + 1 : 1
-likes.doc(req.params.id).set({count})
-})
+  .doc(req.params.id)
+  .get()
+  .then((doc) => {
+    const count = doc.exists ? doc.data().count + 1 : 1
+    likes.doc(req.params.id).set({count})
+  })
 \`\`\`
 
 Instead of calling \`get\` and then \`set\`, fetching and updating a value or
@@ -310,20 +310,20 @@ while guaranteeing that you are incrementing the latest value.
 
 \`\`\`js
 const put = (req, res) =>
-db
-.runTransaction((transaction) =>
-transaction.get(likes.doc(req.params.id)).then((doc) => {
-const count = doc.exists ? doc.data().count + 1 : 1
-const method = doc.exists ? 'update' : 'set'
-transaction[method](likes.doc(req.params.id), {count})
-return Promise.resolve(count)
-}),
-)
-.then((count) => res.status(200).json({count}))
-.catch((error) =>
-res
-.status(500)
-.json({status: 500, message: 'Failed to update count', error}),
+  db
+  .runTransaction((transaction) =>
+    transaction.get(likes.doc(req.params.id)).then((doc) => {
+      const count = doc.exists ? doc.data().count + 1 : 1
+      const method = doc.exists ? 'update' : 'set'
+      transaction[method](likes.doc(req.params.id), {count})
+      return Promise.resolve(count)
+    }),
+  )
+  .then((count) => res.status(200).json({count}))
+  .catch((error) =>
+    res
+      .status(500)
+      .json({status: 500, message: 'Failed to update count', error}),
 )
 \`\`\`
 
@@ -364,12 +364,12 @@ Now to test out this code in production! You need to have the
 run any of the deployment commands.
 
 \`\`\`sh
-gcloud functions deploy likes \`# likes is the name of the Google Cloud Function\` \
---entry-point likes         \`# Is referring to the exported module \`exports.likes\` \
---runtime nodejs8           \`# Use the Node 8 runtime\` \
---trigger-http              \`# Since this is an API, an HTTP request triggers this function\` \
---source ./likes            \`# The directory of the likes button\` \
---project devin-schulz      \`# The name of the project you are deploying. May not be required\`
+gcloud functions deploy likes # likes is the name of the Google Cloud Function \\
+--entry-point likes           # Is referring to the exported module \`exports.likes\` \\
+--runtime nodejs8             # Use the Node 8 runtime \\
+--trigger-http                # Since this is an API, an HTTP request triggers this function \\
+--source ./likes              # The directory of the likes button \\
+--project devin-schulz        # The name of the project you are deploying. May not be required \\
 \`\`\`
 
 Once complete, you should get back a payload containing all the necessary
