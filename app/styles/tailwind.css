@@ -47,8 +47,9 @@ button[aria-expanded='true'] rect.top {
   @apply rotate-45;
 }
 
-button[aria-expanded='true'] rect:is(.top, .bottom) {
-  y: 16;
+button[aria-expanded='true'] rect.top,
+button[aria-expanded='true'] rect.bottom {
+  y: 16px;
 }
 
 button[aria-expanded='true'] rect.center {
