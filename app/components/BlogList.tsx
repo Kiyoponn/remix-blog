@@ -1,5 +1,5 @@
 import { cn } from '@/utils'
-import { Blog } from '@prisma/client'
+import type { Blog } from '@prisma/client'
 import { Link, NavLink } from '@remix-run/react'
 import { buttonStyles } from './Button'
 
@@ -20,7 +20,7 @@ const BlogList: React.FC<Aside> = ({ blogs, isOpen, className, ...props }) => {
       id='aside'
       className={cn(
         'absolute top-0 left-0 z-10 h-full overflow-y-auto bg-accent-1 transition-all delay-100 duration-500 ease-snappy',
-        isOpen ? 'w-[82%] opacity-100' : 'w-0 opacity-0 delay-100',
+        isOpen ? 'w-80 opacity-100' : 'w-0 opacity-0 delay-100',
         'sm:delay-0 sm:duration-0 sm:relative sm:block sm:h-full sm:w-auto sm:bg-black sm:opacity-100 sm:ease-linear'
       )}
       {...props}

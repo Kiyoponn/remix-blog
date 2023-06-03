@@ -1,5 +1,5 @@
 import BlogList from '@/components/BlogList'
-import { HamburgerIcon } from '@/components/Icons'
+import { SidebarCollaspe, SidebarExpand } from '@/components/Icons'
 import Layout from '@/components/Layout'
 import { getBlogListItems } from '@/models/blog.server'
 import { Outlet, useLoaderData, useLocation } from '@remix-run/react'
@@ -58,9 +58,14 @@ export default function AdminPage() {
           id='floating-button'
           onClick={handleToggle}
           aria-expanded={isOpen}
-          className='flex items-center justify-center rounded-full duration-150 ease-in-out'
+          className='-ml-2 flex items-center justify-center p-2 duration-150 ease-in-out'
         >
-          <HamburgerIcon className='stroke-white' />
+          {/*<HamburgerIcon className='stroke-white' />*/}
+          {isOpen ? (
+            <SidebarExpand className='pointer-events-none stroke-accent' />
+          ) : (
+            <SidebarCollaspe className='pointer-events-none stroke-accent' />
+          )}
         </button>
       </div>
       <BlogList blogs={blogs} isOpen={isOpen} />

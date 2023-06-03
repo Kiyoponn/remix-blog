@@ -26,7 +26,7 @@ const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
         ></textarea>
         {error && (
           <span className='flex items-center gap-1 py-2 text-error'>
-            <ErrorIcon className='stroke-error'  />
+            <ErrorIcon className='stroke-error' />
             <span className='font-light'>{error}.</span>
           </span>
         )}
